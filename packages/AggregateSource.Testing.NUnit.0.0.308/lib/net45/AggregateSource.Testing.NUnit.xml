@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AggregateSource.Testing.NUnit</name>
+    </assembly>
+    <members>
+        <member name="T:AggregateSource.Testing.NUnitExtensionsForCommandScenario">
+            <summary>
+            NUnit specific extension methods for asserting aggregate command behavior.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.NUnitExtensionsForCommandScenario.Assert(AggregateSource.Testing.IEventCentricAggregateCommandTestSpecificationBuilder,AggregateSource.Testing.IEventComparer)">
+            <summary>
+            Asserts that the specification is met.
+            </summary>
+            <param name="builder">The specification builder.</param>
+            <param name="comparer">The event comparer.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.NUnitExtensionsForCommandScenario.Assert(AggregateSource.Testing.IExceptionCentricAggregateCommandTestSpecificationBuilder,AggregateSource.Testing.IExceptionComparer)">
+            <summary>
+            Asserts that the specification is met.
+            </summary>
+            <param name="builder">The specification builder.</param>
+            <param name="comparer">The exception comparer.</param>
+        </member>
+        <member name="T:AggregateSource.Testing.NUnitExtensionsForConstructorScenario">
+            <summary>
+            NUnit specific extension methods for asserting aggregate constructor behavior.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.NUnitExtensionsForConstructorScenario.Assert(AggregateSource.Testing.IEventCentricAggregateConstructorTestSpecificationBuilder,AggregateSource.Testing.IEventComparer)">
+            <summary>
+            Asserts that the specification is met.
+            </summary>
+            <param name="builder">The specification builder.</param>
+            <param name="comparer">The event comparer.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.NUnitExtensionsForConstructorScenario.Assert(AggregateSource.Testing.IExceptionCentricAggregateConstructorTestSpecificationBuilder,AggregateSource.Testing.IExceptionComparer)">
+            <summary>
+            Asserts that the specification is met.
+            </summary>
+            <param name="builder">The specification builder.</param>
+            <param name="comparer">The exception comparer.</param>
+        </member>
+        <member name="T:AggregateSource.Testing.NUnitExtensionsForFactoryScenario">
+            <summary>
+            NUnit specific extension methods for asserting aggregate factory behavior.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.NUnitExtensionsForFactoryScenario.Assert(AggregateSource.Testing.IEventCentricAggregateFactoryTestSpecificationBuilder,AggregateSource.Testing.IEventComparer)">
+            <summary>
+            Asserts that the specification is met.
+            </summary>
+            <param name="builder">The specification builder.</param>
+            <param name="comparer">The event comparer.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.NUnitExtensionsForFactoryScenario.Assert(AggregateSource.Testing.IExceptionCentricAggregateFactoryTestSpecificationBuilder,AggregateSource.Testing.IExceptionComparer)">
+            <summary>
+            Asserts that the specification is met.
+            </summary>
+            <param name="builder">The specification builder.</param>
+            <param name="comparer">The exception comparer.</param>
+        </member>
+        <member name="T:AggregateSource.Testing.NUnitExtensionsForQueryScenario">
+            <summary>
+            NUnit specific extension methods for asserting aggregate query behavior.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.NUnitExtensionsForQueryScenario.Assert(AggregateSource.Testing.IResultCentricAggregateQueryTestSpecificationBuilder,AggregateSource.Testing.IResultComparer)">
+            <summary>
+            Asserts that the specification is met.
+            </summary>
+            <param name="builder">The specification builder.</param>
+            <param name="comparer">The result comparer.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.NUnitExtensionsForQueryScenario.Assert(AggregateSource.Testing.IExceptionCentricAggregateQueryTestSpecificationBuilder,AggregateSource.Testing.IExceptionComparer)">
+            <summary>
+            Asserts that the specification is met.
+            </summary>
+            <param name="builder">The specification builder.</param>
+            <param name="comparer">The exception comparer.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,13 @@
+F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\bin\Debug\net45\AggregateSource.SqlStreamStore.XML
+F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\bin\Debug\net45\AggregateSource.SqlStreamStore.dll
+F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\bin\Debug\net45\AggregateSource.SqlStreamStore.pdb
+F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\bin\Debug\net45\AggregateSource.dll
+F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\bin\Debug\net45\SqlStreamStore.dll
+F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\bin\Debug\net45\SqlStreamStore.MsSql.dll
+F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\bin\Debug\net45\AggregateSource.pdb
+F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\bin\Debug\net45\AggregateSource.xml
+F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\bin\Debug\net45\SqlStreamStore.xml
+F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\bin\Debug\net45\SqlStreamStore.MsSql.xml
+F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\obj\Debug\AggregateSource.SqlStreamStore.csprojResolveAssemblyReference.cache
+F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\obj\Debug\AggregateSource.SqlStreamStore.dll
+F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\obj\Debug\AggregateSource.SqlStreamStore.pdb

@@ -1,0 +1,2662 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AggregateSource.Testing</name>
+    </assembly>
+    <members>
+        <member name="T:AggregateSource.Testing.CommandScenarioFor`1">
+            <summary>
+            A given-when-then test specification bootstrapper for testing an aggregate command, i.e. a method on the aggregate that returns void.
+            </summary>
+            <typeparam name="TAggregateRoot">The type of aggregate root entity under test.</typeparam>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateCommandInitialStateBuilder`1">
+            <summary>
+            The initial state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateCommandInitialStateBuilder`1.GivenNone">
+            <summary>
+            Given no events occured.
+            </summary>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateCommandInitialStateBuilder`1.Given(System.Object[])">
+            <summary>
+            Given the following events occured.
+            </summary>
+            <param name="events">The events that occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateCommandInitialStateBuilder`1.When(System.Action{`0})">
+            <summary>
+            When a command occurs.
+            </summary>
+            <param name="command">The command method invocation on the sut.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.CommandScenarioFor`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.CommandScenarioFor`1"/> class.
+            </summary>
+            <param name="sut">The sut.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.CommandScenarioFor`1.#ctor(System.Func{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.CommandScenarioFor`1"/> class.
+            </summary>
+            <param name="sutFactory">The sut factory.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="sutFactory"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.CommandScenarioFor`1.Given(System.Object[])">
+            <summary>
+            Given the following events occured.
+            </summary>
+            <param name="events">The events that occurred.</param>
+            <returns>A builder continuation.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="events"/> are <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.CommandScenarioFor`1.GivenNone">
+            <summary>
+            Given no events occured.
+            </summary>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.CommandScenarioFor`1.When(System.Action{`0})">
+            <summary>
+            When a command occurs.
+            </summary>
+            <param name="command">The command method invocation on the sut.</param>
+            <returns>A builder continuation.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="command"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateCommandGivenNoneStateBuilder`1">
+            <summary>
+            The given none state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateCommandGivenNoneStateBuilder`1.When(System.Action{`0})">
+            <summary>
+            When a command occurs.
+            </summary>
+            <param name="command">The command method invocation on the sut.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateCommandGivenStateBuilder`1">
+            <summary>
+            The given state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateCommandGivenStateBuilder`1.Given(System.Object[])">
+            <summary>
+            Given the following events occured.
+            </summary>
+            <param name="events">The events that occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateCommandGivenStateBuilder`1.When(System.Action{`0})">
+            <summary>
+            When a command occurs.
+            </summary>
+            <param name="command">The command method invocation on the sut.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateCommandThenNoneStateBuilder">
+            <summary>
+            The then none state within the test specification building process.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IEventCentricAggregateCommandTestSpecificationBuilder">
+            <summary>
+            The act of building an event-centric aggregate command test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IEventCentricAggregateCommandTestSpecificationBuilder.Build">
+            <summary>
+            Builds the test specification thus far.
+            </summary>
+            <returns>The test specification.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateCommandThenStateBuilder">
+            <summary>
+            The then state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateCommandThenStateBuilder.Then(System.Object[])">
+            <summary>
+            Then events should have occurred.
+            </summary>
+            <param name="events">The events that should have occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateCommandThrowStateBuilder">
+            <summary>
+            The throw state within the test specification building process.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IExceptionCentricAggregateCommandTestSpecificationBuilder">
+            <summary>
+            The act of building an exception-centric aggregate command test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IExceptionCentricAggregateCommandTestSpecificationBuilder.Build">
+            <summary>
+            Builds the test specification thus far.
+            </summary>
+            <returns>The test specification.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateCommandWhenStateBuilder">
+            <summary>
+            The when state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateCommandWhenStateBuilder.ThenNone">
+            <summary>
+            Then no events should have occurred.
+            </summary>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateCommandWhenStateBuilder.Then(System.Object[])">
+            <summary>
+            Then events should have occurred.
+            </summary>
+            <param name="events">The events that should have occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateCommandWhenStateBuilder.Throws(System.Exception)">
+            <summary>
+            Throws an exception.
+            </summary>
+            <param name="exception">The exception thrown.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.Comparers.CompareNetObjectsBasedEventComparer">
+            <summary>
+            Compares events using a <see cref="T:KellermanSoftware.CompareNetObjects.ICompareLogic"/> object and reports the differences.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IEventComparer">
+            <summary>
+            Contract to compare if the expected and actual event are equal.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IEventComparer.Compare(System.Object,System.Object)">
+            <summary>
+            Compares the expected to the actual event.
+            </summary>
+            <param name="expected">The expected event.</param>
+            <param name="actual">The actual event.</param>
+            <returns>An enumeration of <see cref="T:AggregateSource.Testing.EventComparisonDifference">differences</see>, or empty if none found.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.Comparers.CompareNetObjectsBasedEventComparer.#ctor(KellermanSoftware.CompareNetObjects.ICompareLogic)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.Comparers.CompareNetObjectsBasedEventComparer"/> class.
+            </summary>
+            <param name="logic">The compare logic.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="logic"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.Comparers.CompareNetObjectsBasedEventComparer.Compare(System.Object,System.Object)">
+            <summary>
+            Compares the expected to the actual event.
+            </summary>
+            <param name="expected">The expected event.</param>
+            <param name="actual">The actual event.</param>
+            <returns>
+            An enumeration of <see cref="T:AggregateSource.Testing.EventComparisonDifference">differences</see>, or empty if none found.
+            </returns>
+        </member>
+        <member name="T:AggregateSource.Testing.Comparers.CompareNetObjectsBasedExceptionComparer">
+            <summary>
+            Compares exception using a <see cref="T:KellermanSoftware.CompareNetObjects.ICompareLogic"/> object and reports the differences.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IExceptionComparer">
+            <summary>
+            Contract to compare if the expected and actual exception are equal.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IExceptionComparer.Compare(System.Exception,System.Exception)">
+            <summary>
+            Compares the expected to the actual exception.
+            </summary>
+            <param name="expected">The expected exception.</param>
+            <param name="actual">The actual exception.</param>
+            <returns>An enumeration of <see cref="T:AggregateSource.Testing.ExceptionComparisonDifference">differences</see>, or empty if none found.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.Comparers.CompareNetObjectsBasedExceptionComparer.#ctor(KellermanSoftware.CompareNetObjects.ICompareLogic)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.Comparers.CompareNetObjectsBasedExceptionComparer"/> class.
+            </summary>
+            <param name="logic">The compare logic.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="logic"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.Comparers.CompareNetObjectsBasedExceptionComparer.Compare(System.Exception,System.Exception)">
+            <summary>
+            Compares the expected to the actual exception.
+            </summary>
+            <param name="expected">The expected exception.</param>
+            <param name="actual">The actual exception.</param>
+            <returns>
+            An enumeration of <see cref="T:AggregateSource.Testing.ExceptionComparisonDifference">differences</see>, or empty if none found.
+            </returns>
+        </member>
+        <member name="T:AggregateSource.Testing.Comparers.CompareNetObjectsBasedFactComparer">
+            <summary>
+            Compares facts using a <see cref="T:KellermanSoftware.CompareNetObjects.ICompareLogic"/> object and reports the differences.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IFactComparer">
+            <summary>
+            Contract to compare if the expected and actual fact are equal.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IFactComparer.Compare(AggregateSource.Fact,AggregateSource.Fact)">
+            <summary>
+            Compares the expected to the actual fact.
+            </summary>
+            <param name="expected">The expected fact.</param>
+            <param name="actual">The actual fact.</param>
+            <returns>An enumeration of <see cref="T:AggregateSource.Testing.FactComparisonDifference">differences</see>, or empty if none found.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.Comparers.CompareNetObjectsBasedFactComparer.#ctor(KellermanSoftware.CompareNetObjects.ICompareLogic)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.Comparers.CompareNetObjectsBasedFactComparer"/> class.
+            </summary>
+            <param name="logic">The comparer.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="logic">comparer</paramref> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.Comparers.CompareNetObjectsBasedFactComparer.Compare(AggregateSource.Fact,AggregateSource.Fact)">
+            <summary>
+            Compares the expected to the actual fact.
+            </summary>
+            <param name="expected">The expected fact.</param>
+            <param name="actual">The actual fact.</param>
+            <returns>
+            An enumeration of <see cref="T:AggregateSource.Testing.FactComparisonDifference">differences</see>, or empty if none found.
+            </returns>
+        </member>
+        <member name="T:AggregateSource.Testing.Comparers.CompareNetObjectsBasedResultComparer">
+            <summary>
+            Compares results using a <see cref="T:KellermanSoftware.CompareNetObjects.ICompareLogic"/> object and reports the differences.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IResultComparer">
+            <summary>
+            Contract to compare if the expected and actual event are equal.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IResultComparer.Compare(System.Object,System.Object)">
+            <summary>
+            Compares the expected to the actual event.
+            </summary>
+            <param name="expected">The expected event.</param>
+            <param name="actual">The actual event.</param>
+            <returns>An enumeration of <see cref="T:AggregateSource.Testing.EventComparisonDifference">differences</see>, or empty if none found.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.Comparers.CompareNetObjectsBasedResultComparer.#ctor(KellermanSoftware.CompareNetObjects.ICompareLogic)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.Comparers.CompareNetObjectsBasedResultComparer"/> class.
+            </summary>
+            <param name="logic">The comparer.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="logic"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.Comparers.CompareNetObjectsBasedResultComparer.Compare(System.Object,System.Object)">
+            <summary>
+            Compares the expected to the actual event.
+            </summary>
+            <param name="expected">The expected event.</param>
+            <param name="actual">The actual event.</param>
+            <returns>
+            An enumeration of <see cref="T:AggregateSource.Testing.EventComparisonDifference">differences</see>, or empty if none found.
+            </returns>
+        </member>
+        <member name="T:AggregateSource.Testing.FactComparisonDifference">
+            <summary>
+            Represents a difference found between the expected and actual fact.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.FactComparisonDifference.#ctor(AggregateSource.Fact,AggregateSource.Fact,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.FactComparisonDifference"/> class.
+            </summary>
+            <param name="expected">The expected fact.</param>
+            <param name="actual">The actual fact.</param>
+            <param name="message">The message describing the difference.</param>
+        </member>
+        <member name="P:AggregateSource.Testing.FactComparisonDifference.Expected">
+            <summary>
+            Gets the expected fact.
+            </summary>
+            <value>
+            The expected fact.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.FactComparisonDifference.Actual">
+            <summary>
+            Gets the actual fact.
+            </summary>
+            <value>
+            The actual fact.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.FactComparisonDifference.Message">
+            <summary>
+            Gets the message.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="T:AggregateSource.Testing.ConstructorScenarioFor`1">
+            <summary>
+            A when-then test specification bootstrapper for testing an aggregate constructor,
+            i.e. a method on the aggregate that returns an instance of the aggregate.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateConstructorWhenStateBuilder">
+            <summary>
+            The when state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateConstructorWhenStateBuilder.Then(System.Object[])">
+            <summary>
+            Then events should have occurred.
+            </summary>
+            <param name="events">The events that should have occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateConstructorWhenStateBuilder.Throws(System.Exception)">
+            <summary>
+            Throws an exception.
+            </summary>
+            <param name="exception">The exception thrown.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ConstructorScenarioFor`1.#ctor(System.Func{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ConstructorScenarioFor`1"/> class.
+            </summary>
+            <param name="constructor">The constructor to test.</param>
+            <exception cref="T:System.ArgumentNullException">Throw if <paramref name="constructor"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.ConstructorScenarioFor`1.Then(System.Object[])">
+            <summary>
+            Then events should have occurred.
+            </summary>
+            <param name="events">The events that should have occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ConstructorScenarioFor`1.Throws(System.Exception)">
+            <summary>
+            Throws an exception.
+            </summary>
+            <param name="exception">The exception thrown.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateConstructorThenStateBuilder">
+            <summary>
+            The then state within the test specification building process.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IEventCentricAggregateConstructorTestSpecificationBuilder">
+            <summary>
+            The act of building an event-centric aggregate constructor test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IEventCentricAggregateConstructorTestSpecificationBuilder.Build">
+            <summary>
+            Builds the test specification thus far.
+            </summary>
+            <returns>The test specification.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateConstructorThenStateBuilder.Then(System.Object[])">
+            <summary>
+            Then events should have occurred.
+            </summary>
+            <param name="events">The events that should have occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateConstructorThrowStateBuilder">
+            <summary>
+            The throw state within the test specification building process.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IExceptionCentricAggregateConstructorTestSpecificationBuilder">
+            <summary>
+            The act of building an exception-centric aggregate constructor test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IExceptionCentricAggregateConstructorTestSpecificationBuilder.Build">
+            <summary>
+            Builds the test specification thus far.
+            </summary>
+            <returns>The test specification.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.EventComparisonDifference">
+            <summary>
+            Represents a difference found between the expected and actual event.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.EventComparisonDifference.#ctor(System.Object,System.Object,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.EventComparisonDifference"/> class.
+            </summary>
+            <param name="expected">The expected event.</param>
+            <param name="actual">The actual event.</param>
+            <param name="message">The message describing the difference.</param>
+        </member>
+        <member name="P:AggregateSource.Testing.EventComparisonDifference.Expected">
+            <summary>
+            Gets the expected event.
+            </summary>
+            <value>
+            The expected event.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventComparisonDifference.Actual">
+            <summary>
+            Gets the actual event.
+            </summary>
+            <value>
+            The actual event.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventComparisonDifference.Message">
+            <summary>
+            Gets the message.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="T:AggregateSource.Testing.EventCentricAggregateCommandTestResult">
+            <summary>
+            The result of an event centric aggregate command test specification run.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateCommandTestResult.#ctor(AggregateSource.Testing.EventCentricAggregateCommandTestSpecification,AggregateSource.Testing.TestResultState,AggregateSource.Optional{System.Object[]},AggregateSource.Optional{System.Exception})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.EventCentricTestResult"/> class.
+            </summary>
+            <param name="specification">The specification.</param>
+            <param name="state">The state.</param>
+            <param name="actualEvents">The actual events.</param>
+            <param name="actualException">The actual exception.</param>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateCommandTestResult.Specification">
+            <summary>
+            Gets the test specification associated with this result.
+            </summary>
+            <value>
+            The test specification.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateCommandTestResult.Passed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.EventCentricTestResult"/> has passed.
+            </summary>
+            <value>
+              <c>true</c> if passed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateCommandTestResult.Failed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.EventCentricTestResult"/> has failed.
+            </summary>
+            <value>
+              <c>true</c> if failed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateCommandTestResult.ButEvents">
+            <summary>
+            Gets the events that happened instead of the expected ones, or empty if passed.
+            </summary>
+            <value>
+            The events.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateCommandTestResult.ButException">
+            <summary>
+            Gets the exception that happened instead of the expected events, or empty if passed.
+            </summary>
+            <value>
+            The exception.
+            </value>
+        </member>
+        <member name="T:AggregateSource.Testing.EventCentricAggregateCommandTestRunner">
+            <summary>
+            Represents an aggregate command test specification runner.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IEventCentricAggregateCommandTestRunner">
+            <summary>
+            Represents an aggregate command test specification runner.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IEventCentricAggregateCommandTestRunner.Run(AggregateSource.Testing.EventCentricAggregateCommandTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>The result of running the test specification.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateCommandTestRunner.#ctor(AggregateSource.Testing.IEventComparer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.EventCentricAggregateCommandTestRunner"/> class.
+            </summary>
+            <param name="comparer">The comparer to use when comparing events.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="comparer"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateCommandTestRunner.Run(AggregateSource.Testing.EventCentricAggregateCommandTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>
+            The result of running the test specification.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.EventCentricAggregateCommandTestSpecification">
+            <summary>
+            Represents an event centric test specification, meaning that the outcome revolves around events as the result of executing a command method on an aggregate.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateCommandTestSpecification.#ctor(System.Func{AggregateSource.IAggregateRootEntity},System.Object[],System.Action{AggregateSource.IAggregateRootEntity},System.Object[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.EventCentricAggregateCommandTestSpecification"/> class.
+            </summary>
+            <param name="sutFactory">The sut factory.</param>
+            <param name="givens">The events to arrange.</param>
+            <param name="when">The command method to act upon.</param>
+            <param name="thens">The events to assert.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateCommandTestSpecification.Pass">
+            <summary>
+            Returns a test result that indicates this specification has passed.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricAggregateCommandTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateCommandTestSpecification.Fail(System.Object[])">
+            <summary>
+            Returns a test result that indicates this specification has failed because different things happened.
+            </summary>
+            <param name="actual">The actual events</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricAggregateCommandTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateCommandTestSpecification.Fail(System.Exception)">
+            <summary>
+            Returns a test result that indicates this specification has failed because an exception happened.
+            </summary>
+            <param name="actual">The actual exception</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricAggregateCommandTestResult"/>.</returns>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateCommandTestSpecification.SutFactory">
+            <summary>
+            Gets the sut factory.
+            </summary>
+            <value>
+            The sut factory.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateCommandTestSpecification.Givens">
+            <summary>
+            The events to arrange.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateCommandTestSpecification.When">
+            <summary>
+            The command method to act upon.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateCommandTestSpecification.Thens">
+            <summary>
+            The expected events to assert.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.EventCentricAggregateConstructorTestResult">
+            <summary>
+            The result of an event centric aggregate constructor test specification run.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateConstructorTestResult.#ctor(AggregateSource.Testing.EventCentricAggregateConstructorTestSpecification,AggregateSource.Testing.TestResultState,AggregateSource.Optional{System.Object[]},AggregateSource.Optional{System.Exception})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.EventCentricTestResult"/> class.
+            </summary>
+            <param name="specification">The specification.</param>
+            <param name="state">The state.</param>
+            <param name="actualEvents">The actual events.</param>
+            <param name="actualException">The actual exception.</param>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateConstructorTestResult.Specification">
+            <summary>
+            Gets the test specification associated with this result.
+            </summary>
+            <value>
+            The test specification.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateConstructorTestResult.Passed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.EventCentricTestResult"/> has passed.
+            </summary>
+            <value>
+              <c>true</c> if passed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateConstructorTestResult.Failed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.EventCentricTestResult"/> has failed.
+            </summary>
+            <value>
+              <c>true</c> if failed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateConstructorTestResult.ButEvents">
+            <summary>
+            Gets the events that happened instead of the expected ones, or empty if passed.
+            </summary>
+            <value>
+            The events.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateConstructorTestResult.ButException">
+            <summary>
+            Gets the exception that happened instead of the expected events, or empty if passed.
+            </summary>
+            <value>
+            The exception.
+            </value>
+        </member>
+        <member name="T:AggregateSource.Testing.EventCentricAggregateConstructorTestRunner">
+            <summary>
+            Represents an aggregate constructor test specification runner.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IEventCentricAggregateConstructorTestRunner">
+            <summary>
+            Represents an aggregate constructor test specification runner.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IEventCentricAggregateConstructorTestRunner.Run(AggregateSource.Testing.EventCentricAggregateConstructorTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>The result of running the test specification.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateConstructorTestRunner.#ctor(AggregateSource.Testing.IEventComparer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.EventCentricAggregateConstructorTestRunner"/> class.
+            </summary>
+            <param name="comparer">The comparer to use when comparing events.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="comparer"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateConstructorTestRunner.Run(AggregateSource.Testing.EventCentricAggregateConstructorTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>
+            The result of running the test specification.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.EventCentricAggregateConstructorTestSpecification">
+            <summary>
+            Represents an event centric test specification, meaning that the outcome revolves around events as the result of constructing an aggregate.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateConstructorTestSpecification.#ctor(System.Func{AggregateSource.IAggregateRootEntity},System.Object[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.EventCentricAggregateConstructorTestSpecification"/> class.
+            </summary>
+            <param name="sutFactory">The sut factory.</param>
+            <param name="thens">The events to assert.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateConstructorTestSpecification.Pass">
+            <summary>
+            Returns a test result that indicates this specification has passed.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricAggregateConstructorTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateConstructorTestSpecification.Fail(System.Object[])">
+            <summary>
+            Returns a test result that indicates this specification has failed because different things happened.
+            </summary>
+            <param name="actual">The actual events</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricAggregateConstructorTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateConstructorTestSpecification.Fail(System.Exception)">
+            <summary>
+            Returns a test result that indicates this specification has failed because an exception happened.
+            </summary>
+            <param name="actual">The actual exception</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricAggregateConstructorTestResult"/>.</returns>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateConstructorTestSpecification.SutFactory">
+            <summary>
+            Gets the sut factory.
+            </summary>
+            <value>
+            The sut factory.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateConstructorTestSpecification.Thens">
+            <summary>
+            The expected events to assert.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.EventCentricAggregateFactoryTestResult">
+            <summary>
+            The result of an event centric aggregate factory test specification run.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateFactoryTestResult.#ctor(AggregateSource.Testing.EventCentricAggregateFactoryTestSpecification,AggregateSource.Testing.TestResultState,AggregateSource.Optional{System.Object[]},AggregateSource.Optional{System.Exception})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.EventCentricTestResult"/> class.
+            </summary>
+            <param name="specification">The specification.</param>
+            <param name="state">The state.</param>
+            <param name="actualEvents">The actual events.</param>
+            <param name="actualException">The actual exception.</param>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateFactoryTestResult.Specification">
+            <summary>
+            Gets the test specification associated with this result.
+            </summary>
+            <value>
+            The test specification.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateFactoryTestResult.Passed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.EventCentricTestResult"/> has passed.
+            </summary>
+            <value>
+              <c>true</c> if passed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateFactoryTestResult.Failed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.EventCentricTestResult"/> has failed.
+            </summary>
+            <value>
+              <c>true</c> if failed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateFactoryTestResult.ButEvents">
+            <summary>
+            Gets the events that happened instead of the expected ones, or empty if passed.
+            </summary>
+            <value>
+            The events.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateFactoryTestResult.ButException">
+            <summary>
+            Gets the exception that happened instead of the expected events, or empty if passed.
+            </summary>
+            <value>
+            The exception.
+            </value>
+        </member>
+        <member name="T:AggregateSource.Testing.EventCentricAggregateFactoryTestRunner">
+            <summary>
+            Represents an aggregate factory test specification runner.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IEventCentricAggregateFactoryTestRunner">
+            <summary>
+            Represents an aggregate factory test specification runner.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IEventCentricAggregateFactoryTestRunner.Run(AggregateSource.Testing.EventCentricAggregateFactoryTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>The result of running the test specification.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateFactoryTestRunner.#ctor(AggregateSource.Testing.IEventComparer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.EventCentricAggregateFactoryTestRunner"/> class.
+            </summary>
+            <param name="comparer">The comparer to use when comparing events.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="comparer"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateFactoryTestRunner.Run(AggregateSource.Testing.EventCentricAggregateFactoryTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>
+            The result of running the test specification.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.EventCentricAggregateFactoryTestSpecification">
+            <summary>
+            Represents an event centric test specification, meaning that the outcome revolves around events as the result of executing a factory method on an aggregate.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateFactoryTestSpecification.#ctor(System.Func{AggregateSource.IAggregateRootEntity},System.Object[],System.Func{AggregateSource.IAggregateRootEntity,AggregateSource.IAggregateRootEntity},System.Object[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.EventCentricAggregateFactoryTestSpecification"/> class.
+            </summary>
+            <param name="sutFactory">The sut factory.</param>
+            <param name="givens">The events to arrange.</param>
+            <param name="when">The factory method to act upon.</param>
+            <param name="thens">The events to assert.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateFactoryTestSpecification.Pass">
+            <summary>
+            Returns a test result that indicates this specification has passed.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricAggregateFactoryTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateFactoryTestSpecification.Fail(System.Object[])">
+            <summary>
+            Returns a test result that indicates this specification has failed because different things happened.
+            </summary>
+            <param name="actual">The actual events</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricAggregateFactoryTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricAggregateFactoryTestSpecification.Fail(System.Exception)">
+            <summary>
+            Returns a test result that indicates this specification has failed because an exception happened.
+            </summary>
+            <param name="actual">The actual exception</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricAggregateFactoryTestResult"/>.</returns>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateFactoryTestSpecification.SutFactory">
+            <summary>
+            Gets the sut factory.
+            </summary>
+            <value>
+            The sut factory.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateFactoryTestSpecification.Givens">
+            <summary>
+            The events to arrange.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateFactoryTestSpecification.When">
+            <summary>
+            The factory method to act upon.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricAggregateFactoryTestSpecification.Thens">
+            <summary>
+            The expected events to assert.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.ResultCentricAggregateQueryTestResult">
+            <summary>
+            The result of a result centric aggregate query test specification run.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ResultCentricAggregateQueryTestResult.#ctor(AggregateSource.Testing.ResultCentricAggregateQueryTestSpecification,AggregateSource.Testing.TestResultState,AggregateSource.Optional{System.Object},AggregateSource.Optional{System.Exception},AggregateSource.Optional{System.Object[]})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ResultCentricAggregateQueryTestResult"/> class.
+            </summary>
+            <param name="specification">The specification.</param>
+            <param name="state">The state.</param>
+            <param name="actualResult">The actual result.</param>
+            <param name="actualException">The actual exception.</param>
+            <param name="actualEvents">The actual events.</param>
+        </member>
+        <member name="P:AggregateSource.Testing.ResultCentricAggregateQueryTestResult.Specification">
+            <summary>
+            Gets the test specification associated with this result.
+            </summary>
+            <value>
+            The test specification.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ResultCentricAggregateQueryTestResult.Passed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.ResultCentricAggregateQueryTestResult"/> has passed.
+            </summary>
+            <value>
+              <c>true</c> if passed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ResultCentricAggregateQueryTestResult.Failed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.ResultCentricAggregateQueryTestResult"/> has failed.
+            </summary>
+            <value>
+              <c>true</c> if failed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ResultCentricAggregateQueryTestResult.ButResult">
+            <summary>
+            Gets the result that happened instead of the expected one, or empty if passed.
+            </summary>
+            <value>
+            The result.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ResultCentricAggregateQueryTestResult.ButException">
+            <summary>
+            Gets the exception that happened instead of the expected events, or empty if passed.
+            </summary>
+            <value>
+            The exception.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ResultCentricAggregateQueryTestResult.ButEvents">
+            <summary>
+            Gets the events that happened instead of the expected ones, or empty if passed.
+            </summary>
+            <value>
+            The events.
+            </value>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionCentricAggregateCommandTestResult">
+            <summary>
+            The result of an exception centric aggregate command test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateCommandTestResult.#ctor(AggregateSource.Testing.ExceptionCentricAggregateCommandTestSpecification,AggregateSource.Testing.TestResultState,AggregateSource.Optional{System.Exception},AggregateSource.Optional{System.Object[]})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ExceptionCentricTestResult"/> class.
+            </summary>
+            <param name="specification">The specification.</param>
+            <param name="state">The state.</param>
+            <param name="actualException">The actual exception.</param>
+            <param name="actualEvents">The actual events.</param>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateCommandTestResult.Specification">
+            <summary>
+            Gets the test specification associated with this result.
+            </summary>
+            <value>
+            The test specification.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateCommandTestResult.Passed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateCommandTestResult"/> has passed.
+            </summary>
+            <value>
+              <c>true</c> if passed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateCommandTestResult.Failed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateCommandTestResult"/> has failed.
+            </summary>
+            <value>
+              <c>true</c> if failed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateCommandTestResult.ButException">
+            <summary>
+            Gets the exception that happened instead of the expected one, or empty if passed.
+            </summary>
+            <value>
+            The exception.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateCommandTestResult.ButEvents">
+            <summary>
+            Gets the events that happened instead of the expected exception, or empty if passed.
+            </summary>
+            <value>
+            The events.
+            </value>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionCentricAggregateCommandTestRunner">
+            <summary>
+            Represents an aggregate command test specification runner.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IExceptionCentricAggregateCommandTestRunner">
+            <summary>
+            Represents an aggregate command test specification runner.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IExceptionCentricAggregateCommandTestRunner.Run(AggregateSource.Testing.ExceptionCentricAggregateCommandTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>The result of running the test specification.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateCommandTestRunner.#ctor(AggregateSource.Testing.IExceptionComparer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateCommandTestRunner"/> class.
+            </summary>
+            <param name="comparer">The comparer to use when comparing exceptions.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="comparer"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateCommandTestRunner.Run(AggregateSource.Testing.ExceptionCentricAggregateCommandTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>
+            The result of running the test specification.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionCentricAggregateCommandTestSpecification">
+            <summary>
+            Represents an exception centric test specification, meaning that the outcome revolves around an exception as a result of executing a command method on an aggregate.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateCommandTestSpecification.#ctor(System.Func{AggregateSource.IAggregateRootEntity},System.Object[],System.Action{AggregateSource.IAggregateRootEntity},System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateCommandTestSpecification"/> class.
+            </summary>
+            <param name="sutFactory">The sut factory.</param>
+            <param name="givens">The events to arrange.</param>
+            <param name="when">The command method to act upon.</param>
+            <param name="throws">The expected exception to assert.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateCommandTestSpecification.Pass">
+            <summary>
+            Returns a test result that indicates this specification has passed.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateCommandTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateCommandTestSpecification.Fail">
+            <summary>
+            Returns a test result that indicates this specification has failed because nothing happened.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateCommandTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateCommandTestSpecification.Fail(System.Object[])">
+            <summary>
+            Returns a test result that indicates this specification has failed because different things happened.
+            </summary>
+            <param name="actual">The actual events</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateCommandTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateCommandTestSpecification.Fail(System.Exception)">
+            <summary>
+            Returns a test result that indicates this specification has failed because an exception happened.
+            </summary>
+            <param name="actual">The actual exception</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateCommandTestResult"/>.</returns>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateCommandTestSpecification.SutFactory">
+            <summary>
+            Gets the sut factory.
+            </summary>
+            <value>
+            The sut factory.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateCommandTestSpecification.Givens">
+            <summary>
+            The events to arrange.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateCommandTestSpecification.When">
+            <summary>
+            The command method to act upon.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateCommandTestSpecification.Throws">
+            <summary>
+            The expected exception to assert.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestResult">
+            <summary>
+            The result of an exception centric constructor command test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestResult.#ctor(AggregateSource.Testing.ExceptionCentricAggregateConstructorTestSpecification,AggregateSource.Testing.TestResultState,AggregateSource.Optional{System.Exception},AggregateSource.Optional{System.Object[]})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ExceptionCentricTestResult"/> class.
+            </summary>
+            <param name="specification">The specification.</param>
+            <param name="state">The state.</param>
+            <param name="actualException">The actual exception.</param>
+            <param name="actualEvents">The actual events.</param>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestResult.Specification">
+            <summary>
+            Gets the test specification associated with this result.
+            </summary>
+            <value>
+            The test specification.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestResult.Passed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestResult"/> has passed.
+            </summary>
+            <value>
+              <c>true</c> if passed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestResult.Failed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestResult"/> has failed.
+            </summary>
+            <value>
+              <c>true</c> if failed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestResult.ButException">
+            <summary>
+            Gets the exception that happened instead of the expected one, or empty if passed.
+            </summary>
+            <value>
+            The exception.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestResult.ButEvents">
+            <summary>
+            Gets the events that happened instead of the expected exception, or empty if passed.
+            </summary>
+            <value>
+            The events.
+            </value>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestRunner">
+            <summary>
+            Represents an aggregate constructor test specification runner.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IExceptionCentricAggregateConstructorTestRunner">
+            <summary>
+            Represents an aggregate constructor test specification runner.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IExceptionCentricAggregateConstructorTestRunner.Run(AggregateSource.Testing.ExceptionCentricAggregateConstructorTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>The result of running the test specification.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestRunner.#ctor(AggregateSource.Testing.IExceptionComparer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestRunner"/> class.
+            </summary>
+            <param name="comparer">The comparer to use when comparing exceptions.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="comparer"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestRunner.Run(AggregateSource.Testing.ExceptionCentricAggregateConstructorTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>
+            The result of running the test specification.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestSpecification">
+            <summary>
+            Represents an exception centric constructor test specification, meaning that the outcome revolves around an exception as a result of constructing an aggregate.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestSpecification.#ctor(System.Func{AggregateSource.IAggregateRootEntity},System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestSpecification"/> class.
+            </summary>
+            <param name="sutFactory">The sut factory.</param>
+            <param name="throws">The expected exception to assert.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestSpecification.Pass">
+            <summary>
+            Returns a test result that indicates this specification has passed.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestSpecification.Fail">
+            <summary>
+            Returns a test result that indicates this specification has failed because nothing happened.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestSpecification.Fail(System.Object[])">
+            <summary>
+            Returns a test result that indicates this specification has failed because different things happened.
+            </summary>
+            <param name="actual">The actual events</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestSpecification.Fail(System.Exception)">
+            <summary>
+            Returns a test result that indicates this specification has failed because an exception happened.
+            </summary>
+            <param name="actual">The actual exception</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestResult"/>.</returns>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestSpecification.SutFactory">
+            <summary>
+            Gets the sut factory.
+            </summary>
+            <value>
+            The sut factory.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateConstructorTestSpecification.Throws">
+            <summary>
+            The expected exception to assert.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestResult">
+            <summary>
+            The result of an exception centric aggregate factory test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestResult.#ctor(AggregateSource.Testing.ExceptionCentricAggregateFactoryTestSpecification,AggregateSource.Testing.TestResultState,AggregateSource.Optional{System.Exception},AggregateSource.Optional{System.Object[]})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ExceptionCentricTestResult"/> class.
+            </summary>
+            <param name="specification">The specification.</param>
+            <param name="state">The state.</param>
+            <param name="actualException">The actual exception.</param>
+            <param name="actualEvents">The actual events.</param>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestResult.Specification">
+            <summary>
+            Gets the test specification associated with this result.
+            </summary>
+            <value>
+            The test specification.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestResult.Passed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestResult"/> has passed.
+            </summary>
+            <value>
+              <c>true</c> if passed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestResult.Failed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestResult"/> has failed.
+            </summary>
+            <value>
+              <c>true</c> if failed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestResult.ButException">
+            <summary>
+            Gets the exception that happened instead of the expected one, or empty if passed.
+            </summary>
+            <value>
+            The exception.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestResult.ButEvents">
+            <summary>
+            Gets the events that happened instead of the expected exception, or empty if passed.
+            </summary>
+            <value>
+            The events.
+            </value>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestRunner">
+            <summary>
+            Represents an aggregate command test specification runner.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IExceptionCentricAggregateFactoryTestRunner">
+            <summary>
+            Represents an aggregate factory test specification runner.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IExceptionCentricAggregateFactoryTestRunner.Run(AggregateSource.Testing.ExceptionCentricAggregateFactoryTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>The result of running the test specification.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestRunner.#ctor(AggregateSource.Testing.IExceptionComparer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestRunner"/> class.
+            </summary>
+            <param name="comparer">The comparer to use when comparing exceptions.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="comparer"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestRunner.Run(AggregateSource.Testing.ExceptionCentricAggregateFactoryTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>
+            The result of running the test specification.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestSpecification">
+            <summary>
+            Represents an exception centric test specification, meaning that the outcome revolves around an exception as a result of executing a factory method on an aggregate.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestSpecification.#ctor(System.Func{AggregateSource.IAggregateRootEntity},System.Object[],System.Func{AggregateSource.IAggregateRootEntity,AggregateSource.IAggregateRootEntity},System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestSpecification"/> class.
+            </summary>
+            <param name="sutFactory">The sut factory.</param>
+            <param name="givens">The events to arrange.</param>
+            <param name="when">The factory method to act upon.</param>
+            <param name="throws">The expected exception to assert.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestSpecification.Pass">
+            <summary>
+            Returns a test result that indicates this specification has passed.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestSpecification.Fail">
+            <summary>
+            Returns a test result that indicates this specification has failed because nothing happened.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricAggregateFactoryTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestSpecification.Fail(System.Object[])">
+            <summary>
+            Returns a test result that indicates this specification has failed because different things happened.
+            </summary>
+            <param name="actual">The actual events</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestSpecification.Fail(System.Exception)">
+            <summary>
+            Returns a test result that indicates this specification has failed because an exception happened.
+            </summary>
+            <param name="actual">The actual exception</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestResult"/>.</returns>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestSpecification.SutFactory">
+            <summary>
+            Gets the sut factory.
+            </summary>
+            <value>
+            The sut factory.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestSpecification.Givens">
+            <summary>
+            The events to arrange.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestSpecification.When">
+            <summary>
+            The factory method to act upon.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateFactoryTestSpecification.Throws">
+            <summary>
+            The expected exception to assert.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult">
+            <summary>
+            The result of an exception centric aggregate query test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult.#ctor(AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification,AggregateSource.Testing.TestResultState,AggregateSource.Optional{System.Exception},AggregateSource.Optional{System.Object[]},AggregateSource.Optional{System.Object})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ExceptionCentricTestResult"/> class.
+            </summary>
+            <param name="specification">The specification.</param>
+            <param name="state">The state.</param>
+            <param name="actualException">The actual exception.</param>
+            <param name="actualEvents">The actual events.</param>
+            <param name="actualResult">The actual result.</param>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult.Specification">
+            <summary>
+            Gets the test specification associated with this result.
+            </summary>
+            <value>
+            The test specification.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult.Passed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult"/> has passed.
+            </summary>
+            <value>
+              <c>true</c> if passed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult.Failed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult"/> has failed.
+            </summary>
+            <value>
+              <c>true</c> if failed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult.ButException">
+            <summary>
+            Gets the exception that happened instead of the expected one, or empty if passed.
+            </summary>
+            <value>
+            The exception.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult.ButEvents">
+            <summary>
+            Gets the events that happened instead of the expected exception, or empty if passed.
+            </summary>
+            <value>
+            The events.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult.ButResult">
+            <summary>
+            Gets the result that happened instead of the expected exception, or empty if passed.
+            </summary>
+            <value>
+            The result.
+            </value>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionCentricAggregateQueryTestRunner">
+            <summary>
+            Represents an aggregate constructor test specification runner.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IExceptionCentricAggregateQueryTestRunner">
+            <summary>
+            Represents an aggregate query test specification runner.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IExceptionCentricAggregateQueryTestRunner.Run(AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>The result of running the test specification.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateQueryTestRunner.#ctor(AggregateSource.Testing.IExceptionComparer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateQueryTestRunner"/> class.
+            </summary>
+            <param name="comparer">The comparer to use when comparing exceptions.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="comparer"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateQueryTestRunner.Run(AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>
+            The result of running the test specification.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification">
+            <summary>
+            Represents an exception centric test specification, meaning that the outcome revolves around an exception as a result of executing a query method on an aggregate.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification.#ctor(System.Func{AggregateSource.IAggregateRootEntity},System.Object[],System.Func{AggregateSource.IAggregateRootEntity,System.Object},System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification"/> class.
+            </summary>
+            <param name="sutFactory">The sut factory.</param>
+            <param name="givens">The events to arrange.</param>
+            <param name="when">The query method to act upon.</param>
+            <param name="throws">The expected exception to assert.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification.Pass">
+            <summary>
+            Returns a test result that indicates this specification has passed.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification.Fail">
+            <summary>
+            Returns a test result that indicates this specification has failed because nothing happened.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification.Fail(System.Object[])">
+            <summary>
+            Returns a test result that indicates this specification has failed because different things happened.
+            </summary>
+            <param name="actual">The actual events</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification.Fail(System.Exception)">
+            <summary>
+            Returns a test result that indicates this specification has failed because an exception happened.
+            </summary>
+            <param name="actual">The actual exception</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification.Fail(System.Object)">
+            <summary>
+            Returns a test result that indicates this specification has failed because an exception happened.
+            </summary>
+            <param name="actual">The actual result</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricAggregateQueryTestResult"/>.</returns>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification.SutFactory">
+            <summary>
+            Gets the sut factory.
+            </summary>
+            <value>
+            The sut factory.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification.Givens">
+            <summary>
+            The events to arrange.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification.When">
+            <summary>
+            The query method to act upon.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricAggregateQueryTestSpecification.Throws">
+            <summary>
+            The expected exception to assert.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionComparisonDifference">
+            <summary>
+            Represents a difference found between the expected and actual exception.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionComparisonDifference.#ctor(System.Exception,System.Exception,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ExceptionComparisonDifference"/> class.
+            </summary>
+            <param name="expected">The expected exception.</param>
+            <param name="actual">The actual exception.</param>
+            <param name="message">The message describing the difference.</param>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionComparisonDifference.Expected">
+            <summary>
+            Gets the expected exception.
+            </summary>
+            <value>
+            The expected exception.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionComparisonDifference.Actual">
+            <summary>
+            Gets the actual exception.
+            </summary>
+            <value>
+            The actual exception.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionComparisonDifference.Message">
+            <summary>
+            Gets the message.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="T:AggregateSource.Testing.FactoryScenarioFor`1">
+            <summary>
+            A given-when-then test specification bootstrapper for testing an aggregate factory, i.e. a method on the aggregate that creates a new aggregate.
+            </summary>
+            <typeparam name="TAggregateRoot">The type of aggregate root entity under test.</typeparam>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateFactoryInitialStateBuilder`1">
+            <summary>
+            The initial state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateFactoryInitialStateBuilder`1.GivenNone">
+            <summary>
+            Given no events occured.
+            </summary>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateFactoryInitialStateBuilder`1.Given(System.Object[])">
+            <summary>
+            Given the following events occured.
+            </summary>
+            <param name="events">The events that occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateFactoryInitialStateBuilder`1.When``1(System.Func{`0,``0})">
+            <summary>
+            When an aggregate is created.
+            </summary>
+            <param name="factory">The factory method invocation on the sut.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.FactoryScenarioFor`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.FactoryScenarioFor`1"/> class.
+            </summary>
+            <param name="sut">The sut.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.FactoryScenarioFor`1.#ctor(System.Func{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.FactoryScenarioFor`1"/> class.
+            </summary>
+            <param name="sutFactory">The sut factory.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.FactoryScenarioFor`1.GivenNone">
+            <summary>
+            Given no events occured.
+            </summary>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.FactoryScenarioFor`1.Given(System.Object[])">
+            <summary>
+            Given the following events occured.
+            </summary>
+            <param name="events">The events that occurred.</param>
+            <returns>A builder continuation.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="events"/> are <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.FactoryScenarioFor`1.When``1(System.Func{`0,``0})">
+            <summary>
+            When an aggregate is created.
+            </summary>
+            <param name="factory">The factory method invocation on the sut.</param>
+            <returns>A builder continuation.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="factory"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateFactoryGivenNoneStateBuilder`1">
+            <summary>
+            The given none state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateFactoryGivenNoneStateBuilder`1.When``1(System.Func{`0,``0})">
+            <summary>
+            When an aggregate is created.
+            </summary>
+            <param name="factory">The factory method invocation on the sut.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateFactoryGivenStateBuilder`1">
+            <summary>
+            The given state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateFactoryGivenStateBuilder`1.Given(System.Object[])">
+            <summary>
+            Given the following events occured.
+            </summary>
+            <param name="events">The events that occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateFactoryGivenStateBuilder`1.When``1(System.Func{`0,``0})">
+            <summary>
+            When an aggregate is created.
+            </summary>
+            <param name="factory">The factory method invocation on the sut.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateFactoryThenNoneStateBuilder">
+            <summary>
+            The then none state within the test specification building process.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IEventCentricAggregateFactoryTestSpecificationBuilder">
+            <summary>
+            The act of building an event-centric aggregate factory test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IEventCentricAggregateFactoryTestSpecificationBuilder.Build">
+            <summary>
+            Builds the test specification thus far.
+            </summary>
+            <returns>The test specification.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateFactoryThenStateBuilder">
+            <summary>
+            The then state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateFactoryThenStateBuilder.Then(System.Object[])">
+            <summary>
+            Then events should have occurred.
+            </summary>
+            <param name="events">The events that should have occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateFactoryThrowStateBuilder">
+            <summary>
+            The throw state within the test specification building process.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IExceptionCentricAggregateFactoryTestSpecificationBuilder">
+            <summary>
+            The act of building an exception-centric aggregate factory test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IExceptionCentricAggregateFactoryTestSpecificationBuilder.Build">
+            <summary>
+            Builds the test specification thus far.
+            </summary>
+            <returns>The test specification.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateFactoryWhenStateBuilder">
+            <summary>
+            The when state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateFactoryWhenStateBuilder.ThenNone">
+            <summary>
+            Then no events should have occurred.
+            </summary>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateFactoryWhenStateBuilder.Then(System.Object[])">
+            <summary>
+            Then events should have occurred.
+            </summary>
+            <param name="events">The events that should have occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateFactoryWhenStateBuilder.Throws(System.Exception)">
+            <summary>
+            Throws an exception.
+            </summary>
+            <param name="exception">The exception thrown.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateQueryGivenNoneStateBuilder`1">
+            <summary>
+            The given none state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateQueryGivenNoneStateBuilder`1.When``1(System.Func{`0,``0})">
+            <summary>
+            When a query occurs.
+            </summary>
+            <param name="query">The query method invocation on the sut.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateQueryGivenStateBuilder`1">
+            <summary>
+            The given state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateQueryGivenStateBuilder`1.Given(System.Object[])">
+            <summary>
+            Given the following events occured.
+            </summary>
+            <param name="events">The events that occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateQueryGivenStateBuilder`1.When``1(System.Func{`0,``0})">
+            <summary>
+            When a query occurs.
+            </summary>
+            <param name="query">The query method invocation on the sut.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateQueryInitialStateBuilder`1">
+            <summary>
+            The initial state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateQueryInitialStateBuilder`1.GivenNone">
+            <summary>
+            Given no events occured.
+            </summary>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateQueryInitialStateBuilder`1.Given(System.Object[])">
+            <summary>
+            Given the following events occured.
+            </summary>
+            <param name="events">The events that occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateQueryInitialStateBuilder`1.When``1(System.Func{`0,``0})">
+            <summary>
+            When a query occurs.
+            </summary>
+            <param name="query">The query method invocation on the sut.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateQueryThenStateBuilder">
+            <summary>
+            The then state within the test specification building process.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IResultCentricAggregateQueryTestSpecificationBuilder">
+            <summary>
+            The act of building an event-centric aggregate query test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IResultCentricAggregateQueryTestSpecificationBuilder.Build">
+            <summary>
+            Builds the test specification thus far.
+            </summary>
+            <returns>The test specification.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateQueryThrowStateBuilder">
+            <summary>
+            The throw state within the test specification building process.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IExceptionCentricAggregateQueryTestSpecificationBuilder">
+            <summary>
+            The act of building an exception-centric aggregate query test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IExceptionCentricAggregateQueryTestSpecificationBuilder.Build">
+            <summary>
+            Builds the test specification thus far.
+            </summary>
+            <returns>The test specification.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IAggregateQueryWhenStateBuilder`1">
+            <summary>
+            The when state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateQueryWhenStateBuilder`1.Then(`0)">
+            <summary>
+            Then a result is returned.
+            </summary>
+            <param name="result">The result that should be returned.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IAggregateQueryWhenStateBuilder`1.Throws(System.Exception)">
+            <summary>
+            Throws an exception.
+            </summary>
+            <param name="exception">The exception thrown.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IResultCentricAggregateQueryTestRunner">
+            <summary>
+            Represents an aggregate query test specification runner.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IResultCentricAggregateQueryTestRunner.Run(AggregateSource.Testing.ResultCentricAggregateQueryTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>The result of running the test specification.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.QueryScenarioFor`1">
+            <summary>
+            A given-when-then test specification bootstrapper for testing an aggregate query, i.e. a method on the aggregate that returns a value (but is not a factory of another aggregate).
+            </summary>
+            <typeparam name="TAggregateRoot">The type of aggregate root entity under test.</typeparam>
+        </member>
+        <member name="M:AggregateSource.Testing.QueryScenarioFor`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.QueryScenarioFor`1"/> class.
+            </summary>
+            <param name="sut">The sut.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.QueryScenarioFor`1.#ctor(System.Func{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.QueryScenarioFor`1"/> class.
+            </summary>
+            <param name="sutFactory">The sut factory.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.QueryScenarioFor`1.GivenNone">
+            <summary>
+            Given no events occured.
+            </summary>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.QueryScenarioFor`1.Given(System.Object[])">
+            <summary>
+            Given the following events occured.
+            </summary>
+            <param name="events">The events that occurred.</param>
+            <returns>A builder continuation.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="events"/> are <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.QueryScenarioFor`1.When``1(System.Func{`0,``0})">
+            <summary>
+            When a query occurs.
+            </summary>
+            <param name="query">The query method invocation on the sut.</param>
+            <returns>A builder continuation.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="query"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.ResultCentricAggregateQueryTestRunner">
+            <summary>
+            Represents an aggregate query test specification runner.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ResultCentricAggregateQueryTestRunner.#ctor(AggregateSource.Testing.IResultComparer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ResultCentricAggregateQueryTestRunner"/> class.
+            </summary>
+            <param name="comparer">The comparer to use when comparing events.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="comparer"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.ResultCentricAggregateQueryTestRunner.Run(AggregateSource.Testing.ResultCentricAggregateQueryTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>
+            The result of running the test specification.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.ResultCentricAggregateQueryTestSpecification">
+            <summary>
+            Represents an result-centric test specification, meaning that the outcome revolves around the result of executing a query method.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ResultCentricAggregateQueryTestSpecification.#ctor(System.Func{AggregateSource.IAggregateRootEntity},System.Object[],System.Func{AggregateSource.IAggregateRootEntity,System.Object},System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ResultCentricAggregateQueryTestSpecification"/> class.
+            </summary>
+            <param name="sutFactory">The sut factory.</param>
+            <param name="givens">The events to arrange.</param>
+            <param name="when">The query method to act upon.</param>
+            <param name="then">The events to assert.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.ResultCentricAggregateQueryTestSpecification.Pass">
+            <summary>
+            Returns a test result that indicates this specification has passed.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricAggregateCommandTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ResultCentricAggregateQueryTestSpecification.Fail(System.Object[])">
+            <summary>
+            Returns a test result that indicates this specification has failed because different things happened.
+            </summary>
+            <param name="actual">The actual events</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.ResultCentricAggregateQueryTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ResultCentricAggregateQueryTestSpecification.Fail(System.Exception)">
+            <summary>
+            Returns a test result that indicates this specification has failed because an exception happened.
+            </summary>
+            <param name="actual">The actual exception</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.ResultCentricAggregateQueryTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ResultCentricAggregateQueryTestSpecification.Fail(System.Object)">
+            <summary>
+            Returns a test result that indicates this specification has failed because a different query result was returned.
+            </summary>
+            <param name="actual">The actual exception</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.ResultCentricAggregateQueryTestResult"/>.</returns>
+        </member>
+        <member name="P:AggregateSource.Testing.ResultCentricAggregateQueryTestSpecification.SutFactory">
+            <summary>
+            Gets the sut factory.
+            </summary>
+            <value>
+            The sut factory.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ResultCentricAggregateQueryTestSpecification.Givens">
+            <summary>
+            The events to arrange.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.ResultCentricAggregateQueryTestSpecification.When">
+            <summary>
+            The query method to act upon.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.ResultCentricAggregateQueryTestSpecification.Then">
+            <summary>
+            The expected result to assert.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.ResultComparisonDifference">
+            <summary>
+            Represents a difference found between the expected and actual result.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ResultComparisonDifference.#ctor(System.Object,System.Object,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ResultComparisonDifference"/> class.
+            </summary>
+            <param name="expected">The expected result.</param>
+            <param name="actual">The actual result.</param>
+            <param name="message">The message describing the difference.</param>
+        </member>
+        <member name="P:AggregateSource.Testing.ResultComparisonDifference.Expected">
+            <summary>
+            Gets the expected result.
+            </summary>
+            <value>
+            The expected result.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ResultComparisonDifference.Actual">
+            <summary>
+            Gets the actual result.
+            </summary>
+            <value>
+            The actual result.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ResultComparisonDifference.Message">
+            <summary>
+            Gets the message.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="T:AggregateSource.Testing.FactsBuilder">
+            <summary>
+            Represents syntactic sugar to compose facts for use in the testing API.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.FactsBuilder.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.FactsBuilder"/> class.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.FactsBuilder.That(System.String,System.Object[])">
+            <summary>
+            Defines a set of events that happened to a particular aggregate.
+            </summary>
+            <param name="identifier">The aggregate identifier the events apply to.</param>
+            <param name="events">The events that occurred.</param>
+            <returns>A builder of facts.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="identifier"/> or <paramref name="events"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.FactsBuilder.That(AggregateSource.Fact[])">
+            <summary>
+            Defines a set of facts that happened.
+            </summary>
+            <param name="facts">The facts that occurred.</param>
+            <returns>A builder of facts.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="facts"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.FactsBuilder.op_Implicit(AggregateSource.Testing.FactsBuilder)~AggregateSource.Fact[]">
+            <summary>
+            Implicitly converts a builder of facts into a testing API friendly array.
+            </summary>
+            <param name="builder">The builder of facts.</param>
+            <returns>An array of facts.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.EventCentricTestResult">
+            <summary>
+            The result of an event centric test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricTestResult.#ctor(AggregateSource.Testing.EventCentricTestSpecification,AggregateSource.Testing.TestResultState,AggregateSource.Optional{AggregateSource.Fact[]},AggregateSource.Optional{System.Exception})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.EventCentricTestResult"/> class.
+            </summary>
+            <param name="specification">The specification.</param>
+            <param name="state">The state.</param>
+            <param name="actualEvents">The actual events.</param>
+            <param name="actualException">The actual exception.</param>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricTestResult.Specification">
+            <summary>
+            Gets the test specification associated with this result.
+            </summary>
+            <value>
+            The test specification.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricTestResult.Passed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.EventCentricTestResult"/> has passed.
+            </summary>
+            <value>
+              <c>true</c> if passed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricTestResult.Failed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.EventCentricTestResult"/> has failed.
+            </summary>
+            <value>
+              <c>true</c> if failed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricTestResult.ButEvents">
+            <summary>
+            Gets the events that happened instead of the expected ones, or empty if none happened at all.
+            </summary>
+            <value>
+            The events.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricTestResult.ButException">
+            <summary>
+            Gets the exception that happened instead of the expected events, or empty if no exception happened at all.
+            </summary>
+            <value>
+            The exception.
+            </value>
+        </member>
+        <member name="T:AggregateSource.Testing.EventCentricTestSpecification">
+            <summary>
+            Represents an event centric test specification, meaning that the outcome revolves around events.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricTestSpecification.#ctor(AggregateSource.Fact[],System.Object,AggregateSource.Fact[])">
+            <summary>
+            Initializes a new <see cref="T:AggregateSource.Testing.EventCentricTestSpecification"/> instance.
+            </summary>
+            <param name="givens">The specification givens.</param>
+            <param name="when">The specification when.</param>
+            <param name="thens">The specification thens.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricTestSpecification.Pass">
+            <summary>
+            Returns a test result that indicates this specification has passed.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricTestSpecification.Fail">
+            <summary>
+            Returns a test result that indicates this specification has failed because nothing happened.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricTestSpecification.Fail(AggregateSource.Fact[])">
+            <summary>
+            Returns a test result that indicates this specification has failed because different things happened.
+            </summary>
+            <param name="actual">The actual events</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricTestSpecification.Fail(System.Exception)">
+            <summary>
+            Returns a test result that indicates this specification has failed because an exception happened.
+            </summary>
+            <param name="actual">The actual exception</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.EventCentricTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricTestSpecification.Equals(AggregateSource.Testing.EventCentricTestSpecification)">
+            <summary>
+            Determines whether the specified <see cref="T:AggregateSource.Testing.EventCentricTestSpecification"/> is equal to this instance.
+            </summary>
+            <param name="other">The <see cref="T:AggregateSource.Testing.EventCentricTestSpecification"/> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:AggregateSource.Testing.EventCentricTestSpecification"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricTestSpecification.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:AggregateSource.Testing.EventCentricTestSpecification.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricTestSpecification.Givens">
+            <summary>
+            The events to arrange.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricTestSpecification.When">
+            <summary>
+            The message to act upon.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.EventCentricTestSpecification.Thens">
+            <summary>
+            The expected events to assert.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionCentricTestResult">
+            <summary>
+            The result of an exception centric test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricTestResult.#ctor(AggregateSource.Testing.ExceptionCentricTestSpecification,AggregateSource.Testing.TestResultState,AggregateSource.Optional{System.Exception},AggregateSource.Optional{AggregateSource.Fact[]})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AggregateSource.Testing.ExceptionCentricTestResult"/> class.
+            </summary>
+            <param name="specification">The specification.</param>
+            <param name="state">The state.</param>
+            <param name="actualException">The actual exception.</param>
+            <param name="actualEvents">The actual events.</param>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricTestResult.Specification">
+            <summary>
+            Gets the test specification associated with this result.
+            </summary>
+            <value>
+            The test specification.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricTestResult.Passed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.EventCentricTestResult"/> has passed.
+            </summary>
+            <value>
+              <c>true</c> if passed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricTestResult.Failed">
+            <summary>
+            Gets a value indicating whether this <see cref="T:AggregateSource.Testing.EventCentricTestResult"/> has failed.
+            </summary>
+            <value>
+              <c>true</c> if failed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricTestResult.ButException">
+            <summary>
+            Gets the exception that happened instead of the expected one, or empty if one didn't happen at all.
+            </summary>
+            <value>
+            The exception.
+            </value>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricTestResult.ButEvents">
+            <summary>
+            Gets the events that happened instead of the expected exception, or empty if none happened at all.
+            </summary>
+            <value>
+            The events.
+            </value>
+        </member>
+        <member name="T:AggregateSource.Testing.ExceptionCentricTestSpecification">
+            <summary>
+            Represents an exception centric test specification, meaning that the outcome revolves around an exception.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricTestSpecification.#ctor(AggregateSource.Fact[],System.Object,System.Exception)">
+            <summary>
+            Initializes a new <see cref="T:AggregateSource.Testing.ExceptionCentricTestSpecification"/> instance.
+            </summary>
+            <param name="givens">The specification givens.</param>
+            <param name="when">The specification when.</param>
+            <param name="throws">The specification exception thrown.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricTestSpecification.Pass">
+            <summary>
+            Returns a test result that indicates this specification has passed.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricTestSpecification.Fail">
+            <summary>
+            Returns a test result that indicates this specification has failed.
+            </summary>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricTestSpecification.Fail(System.Exception)">
+            <summary>
+            Returns a test result that indicates this specification has failed.
+            </summary>
+            <param name="actual">The actual exception thrown</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricTestSpecification.Fail(AggregateSource.Fact[])">
+            <summary>
+            Returns a test result that indicates this specification has failed because different things happened.
+            </summary>
+            <param name="actual">The actual events</param>
+            <returns>A new <see cref="T:AggregateSource.Testing.ExceptionCentricTestResult"/>.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricTestSpecification.Equals(AggregateSource.Testing.ExceptionCentricTestSpecification)">
+            <summary>
+            Determines whether the specified <see cref="T:AggregateSource.Testing.ExceptionCentricTestSpecification"/> is equal to this instance.
+            </summary>
+            <param name="other">The <see cref="T:AggregateSource.Testing.ExceptionCentricTestSpecification"/> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:AggregateSource.Testing.ExceptionCentricTestSpecification"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricTestSpecification.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:AggregateSource.Testing.ExceptionCentricTestSpecification.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricTestSpecification.Givens">
+            <summary>
+            The events to arrange.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricTestSpecification.When">
+            <summary>
+            The message to act upon.
+            </summary>
+        </member>
+        <member name="P:AggregateSource.Testing.ExceptionCentricTestSpecification.Throws">
+            <summary>
+            The expected exception to assert.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IEventCentricTestSpecificationBuilder">
+            <summary>
+            The act of building an event-centric test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IEventCentricTestSpecificationBuilder.Build">
+            <summary>
+            Builds the test specification thus far.
+            </summary>
+            <returns>The test specification.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IEventCentricTestSpecificationRunner">
+            <summary>
+            Represents an event centric test specification runner.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IEventCentricTestSpecificationRunner.Run(AggregateSource.Testing.EventCentricTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>The result of running the test specification.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.IEventCentricTestSpecificationWriter">
+            <summary>
+            Writes test specifications for human consumption.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IEventCentricTestSpecificationWriter.Write(AggregateSource.Testing.EventCentricTestSpecification)">
+            <summary>
+            Writes the specified test specification.
+            </summary>
+            <param name="specification">The test specification to write.</param>
+        </member>
+        <member name="T:AggregateSource.Testing.IExceptionCentricTestSpecificationBuilder">
+            <summary>
+            The act of building an exception-centric test specification.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IExceptionCentricTestSpecificationBuilder.Build">
+            <summary>
+            Builds the test specification thus far.
+            </summary>
+            <returns>The test specification.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IExceptionCentricTestSpecificationRunner">
+            <summary>
+            Represents an exception centric test specification runner.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IExceptionCentricTestSpecificationRunner.Run(AggregateSource.Testing.ExceptionCentricTestSpecification)">
+            <summary>
+            Runs the specified test specification.
+            </summary>
+            <param name="specification">The test specification to run.</param>
+            <returns>The result of running the test specification.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="specification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.IExceptionCentricTestSpecificationWriter">
+            <summary>
+            Writes test specifications for human consumption.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IExceptionCentricTestSpecificationWriter.Write(AggregateSource.Testing.ExceptionCentricTestSpecification)">
+            <summary>
+            Writes the specified test specification.
+            </summary>
+            <param name="specification">The test specification to write.</param>
+        </member>
+        <member name="T:AggregateSource.Testing.IScenarioGivenNoneStateBuilder">
+            <summary>
+            The given none state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IScenarioGivenNoneStateBuilder.When(System.Object)">
+            <summary>
+            When a command occurs.
+            </summary>
+            <param name="message">The command message.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IScenarioGivenStateBuilder">
+            <summary>
+            The given state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IScenarioGivenStateBuilder.Given(AggregateSource.Fact[])">
+            <summary>
+            Given the following facts occured.
+            </summary>
+            <param name="facts">The facts that occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IScenarioGivenStateBuilder.Given(System.String,System.Object[])">
+            <summary>
+            Given the following events occured.
+            </summary>
+            <param name="identifier">The aggregate identifier the events are to be associated with.</param>
+            <param name="events">The events that occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IScenarioGivenStateBuilder.When(System.Object)">
+            <summary>
+            When a command occurs.
+            </summary>
+            <param name="message">The command message.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IScenarioInitialStateBuilder">
+            <summary>
+            The initial state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IScenarioInitialStateBuilder.GivenNone">
+            <summary>
+            Given no events occured.
+            </summary>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IScenarioInitialStateBuilder.Given(AggregateSource.Fact[])">
+            <summary>
+            Given the following facts occured.
+            </summary>
+            <param name="facts">The facts that occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IScenarioInitialStateBuilder.Given(System.String,System.Object[])">
+            <summary>
+            Given the following events occured.
+            </summary>
+            <param name="identifier">The aggregate identifier the events are to be associated with.</param>
+            <param name="events">The events that occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IScenarioInitialStateBuilder.When(System.Object)">
+            <summary>
+            When a command occurs.
+            </summary>
+            <param name="message">The command message.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IScenarioThenNoneStateBuilder">
+            <summary>
+            The then none state within the test specification building process.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IScenarioThenStateBuilder">
+            <summary>
+            The then state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IScenarioThenStateBuilder.Then(AggregateSource.Fact[])">
+            <summary>
+            Then facts should have occurred.
+            </summary>
+            <param name="facts">The facts that should have occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IScenarioThenStateBuilder.Then(System.String,System.Object[])">
+            <summary>
+            Then events should have occurred.
+            </summary>
+            <param name="identifier">The aggregate identifier the events belong to.</param>
+            <param name="events">The events that should have occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.IScenarioThrowStateBuilder">
+            <summary>
+            The throw state within the test specification building process.
+            </summary>
+        </member>
+        <member name="T:AggregateSource.Testing.IScenarioWhenStateBuilder">
+            <summary>
+            The when state within the test specification building process.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.IScenarioWhenStateBuilder.Then(AggregateSource.Fact[])">
+            <summary>
+            Then facts should have occurred.
+            </summary>
+            <param name="facts">The facts that should have occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IScenarioWhenStateBuilder.Then(System.String,System.Object[])">
+            <summary>
+            Then events should have occurred.
+            </summary>
+            <param name="identifier"></param>
+            <param name="events">The events that should have occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IScenarioWhenStateBuilder.ThenNone">
+            <summary>
+            Then no events should have occurred.
+            </summary>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.IScenarioWhenStateBuilder.Throws(System.Exception)">
+            <summary>
+            Throws an exception.
+            </summary>
+            <param name="exception">The exception thrown.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.Scenario">
+            <summary>
+            The given-when-then test specification builder bootstrapper.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.Scenario.Given(AggregateSource.Fact[])">
+            <summary>
+            Given the following facts occured.
+            </summary>
+            <param name="facts">The facts that occurred.</param>
+            <returns>
+            A builder continuation.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">facts</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.Scenario.Given(System.String,System.Object[])">
+            <summary>
+            Given the following events occured.
+            </summary>
+            <param name="identifier">The aggregate identifier the events are to be associated with.</param>
+            <param name="events">The events that occurred.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.Scenario.GivenNone">
+            <summary>
+            Given no events occured.
+            </summary>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="M:AggregateSource.Testing.Scenario.When(System.Object)">
+            <summary>
+            When a command occurs.
+            </summary>
+            <param name="message">The command message.</param>
+            <returns>A builder continuation.</returns>
+        </member>
+        <member name="T:AggregateSource.Testing.State">
+            <summary>
+            Represents a syntactic sugar bootstrapper to compose facts for use in the testing API.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.State.That(System.String,System.Object[])">
+            <summary>
+            Defines a set of events that happened to a particular aggregate.
+            </summary>
+            <param name="identifier">The aggregate identifier the events apply to.</param>
+            <param name="events">The events that occurred.</param>
+            <returns>A builder of facts.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="identifier"/> or <paramref name="events"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:AggregateSource.Testing.State.That(AggregateSource.Fact[])">
+            <summary>
+            Defines a set of facts that happened.
+            </summary>
+            <param name="facts">The facts that occurred.</param>
+            <returns>A builder of facts.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="facts"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:AggregateSource.Testing.TestSpecificationTextWriter">
+            <summary>
+            Writes test specifications to a <see cref="T:System.IO.TextWriter"/> for human consumption.
+            </summary>
+        </member>
+        <member name="M:AggregateSource.Testing.TestSpecificationTextWriter.#ctor(System.IO.TextWriter)">
+            <summary>
+            Initializes a new instance of <see cref="T:AggregateSource.Testing.TestSpecificationTextWriter"/>.
+            </summary>
+            <param name="writer">The text writer to write on.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.TestSpecificationTextWriter.Write(AggregateSource.Testing.EventCentricTestSpecification)">
+            <summary>
+            Writes the specified test specification.
+            </summary>
+            <param name="specification">The test specification to write.</param>
+        </member>
+        <member name="M:AggregateSource.Testing.TestSpecificationTextWriter.Write(AggregateSource.Testing.ExceptionCentricTestSpecification)">
+            <summary>
+            Writes the specified test specification.
+            </summary>
+            <param name="specification">The test specification to write.</param>
+        </member>
+        <member name="T:AggregateSource.Testing.TestResultState">
+            <summary>
+            Enumeration of possible states a test specification result can be in.
+            </summary>
+        </member>
+        <member name="F:AggregateSource.Testing.TestResultState.Passed">
+            <summary>
+            The test specification passed
+            </summary>
+        </member>
+        <member name="F:AggregateSource.Testing.TestResultState.Failed">
+            <summary>
+            The test specification failed
+            </summary>
+        </member>
+    </members>
+</doc>

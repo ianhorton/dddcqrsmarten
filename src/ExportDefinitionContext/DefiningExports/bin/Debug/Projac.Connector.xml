@@ -1,0 +1,546 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Projac.Connector</name>
+    </assembly>
+    <members>
+        <member name="T:Projac.Connector.AnonymousConnectedProjection`1">
+            <summary>
+                Represent an anonymous connected projection.
+            </summary>
+        </member>
+        <member name="M:Projac.Connector.AnonymousConnectedProjection`1.#ctor(Projac.Connector.ConnectedProjectionHandler{`0}[])">
+            <summary>
+                Initializes a new instance of the <see cref="T:Projac.Connector.AnonymousConnectedProjection`1"/> class.
+            </summary>
+            <param name="handlers">The handlers.</param>
+            <exception cref="T:System.ArgumentNullException">
+                Throw when <paramref name="handlers"/> are <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:Projac.Connector.AnonymousConnectedProjection`1.op_Implicit(Projac.Connector.AnonymousConnectedProjection{`0})~Projac.Connector.ConnectedProjectionHandler{`0}[]">
+            <summary>
+            Performs an implicit conversion from <see cref="T:Projac.Connector.AnonymousConnectedProjection`1"/> to <see><cref>ConnectedProjectionHandler{TConnection}</cref></see>.
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:Projac.Connector.AnonymousConnectedProjection`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a copy of the handlers.
+            </summary>
+            <returns>
+            An <see cref="T:Projac.Connector.ConnectedProjectionHandlerEnumerator`1"/> that can be used to iterate through a copy of the handlers.
+            </returns>
+        </member>
+        <member name="M:Projac.Connector.AnonymousConnectedProjection`1.System#Collections#Generic#IEnumerable{Projac#Connector#ConnectedProjectionHandler{TConnection}}#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            An <see cref="T:Projac.Connector.ConnectedProjectionHandlerEnumerator`1"/> that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:Projac.Connector.AnonymousConnectedProjection`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="P:Projac.Connector.AnonymousConnectedProjection`1.Handlers">
+            <summary>
+                Gets a read only collection of projection handlers.
+            </summary>
+            <value>
+                The projection handlers associated with this specification.
+            </value>
+        </member>
+        <member name="T:Projac.Connector.ConnectedProjectionHandlerEnumerator`1">
+            <summary>
+            Represents a <see cref="T:Projac.Connector.ConnectedProjectionHandler`1"/> array enumerator.
+            </summary>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjectionHandlerEnumerator`1.#ctor(Projac.Connector.ConnectedProjectionHandler{`0}[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Projac.Connector.ConnectedProjectionHandlerEnumerator`1"/> class.
+            </summary>
+            <param name="handlers">The handlers to enumerate.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="handlers"/> are <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjectionHandlerEnumerator`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            true if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection.
+            </returns>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjectionHandlerEnumerator`1.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is before the first element in the collection.
+            </summary>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjectionHandlerEnumerator`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="P:Projac.Connector.ConnectedProjectionHandlerEnumerator`1.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            Enumeration has not started. Call MoveNext.
+            or
+            Enumeration has already ended. Call Reset.
+            </exception>
+        </member>
+        <member name="P:Projac.Connector.ConnectedProjectionHandlerEnumerator`1.System#Collections#IEnumerator#Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="T:Projac.Connector.ConnectedProjector`1">
+            <summary>
+            Projects a single message or set of messages in an asynchronous manner to the matching handlers.
+            </summary>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjector`1.#ctor(Projac.Connector.ConnectedProjectionHandlerResolver{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Projac.Connector.ConnectedProjector`1"/> class.
+            </summary>
+            <param name="resolver">The handler resolver.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="resolver"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjector`1.ProjectAsync(`0,System.Object)">
+            <summary>
+            Projects the specified message asynchronously.
+            </summary>
+            <param name="connection">The connection used during projection.</param>
+            <param name="message">The message to project.</param>
+            <returns>
+                A <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="connection"/> or <paramref name="message"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjector`1.ProjectAsync(`0,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Projects the specified message asynchronously.
+            </summary>
+            <param name="connection">The connection used during projection.</param>
+            <param name="message">The message to project.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+                A <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="connection"/> or <paramref name="message"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjector`1.ProjectAsync(`0,System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            Projects the specified messages to project.
+            </summary>
+            <param name="connection">The connection used during projection.</param>
+            <param name="messages">The messages to project.</param>
+            <returns>
+                A <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="connection"/> or <paramref name="messages"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjector`1.ProjectAsync(`0,System.Collections.Generic.IEnumerable{System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Projects the specified messages asynchronously.
+            </summary>
+            <param name="connection">The connection used during projection.</param>
+            <param name="messages">The messages to project.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+                A <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="connection"/> or <paramref name="messages"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:Projac.Connector.ConcurrentResolve">
+            <summary>
+            Represents the available concurrent <see cref="T:Projac.Connector.ConnectedProjectionHandlerResolver`1">resolvers</see>.
+            </summary>
+        </member>
+        <member name="M:Projac.Connector.ConcurrentResolve.WhenEqualToHandlerMessageType``1(Projac.Connector.ConnectedProjectionHandler{``0}[])">
+            <summary>
+            Resolves the <see cref="T:Projac.Connector.ConnectedProjectionHandler`1">handlers</see> that match the type of the message exactly.
+            </summary>
+            <param name="handlers">The set of resolvable handlers.</param>
+            <returns>A <see cref="T:Projac.Connector.ConnectedProjectionHandlerResolver`1">resolver</see>.</returns>
+        </member>
+        <member name="M:Projac.Connector.ConcurrentResolve.WhenAssignableToHandlerMessageType``1(Projac.Connector.ConnectedProjectionHandler{``0}[])">
+            <summary>
+            Resolves the <see cref="T:Projac.Connector.ConnectedProjectionHandler`1">handlers</see> to which the message instance is assignable.
+            </summary>
+            <param name="handlers">The set of resolvable handlers.</param>
+            <returns>A <see cref="T:Projac.Connector.ConnectedProjectionHandlerResolver`1">resolver</see>.</returns>
+        </member>
+        <member name="T:Projac.Connector.AnonymousConnectedProjectionBuilder`1">
+            <summary>
+                Represents a fluent syntax to build up a set of <see cref="T:Projac.Connector.ConnectedProjectionHandler`1"/>.
+            </summary>
+        </member>
+        <member name="M:Projac.Connector.AnonymousConnectedProjectionBuilder`1.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:Projac.Connector.AnonymousConnectedProjectionBuilder`1"/> class.
+            </summary>
+        </member>
+        <member name="M:Projac.Connector.AnonymousConnectedProjectionBuilder`1.#ctor(Projac.Connector.ConnectedProjectionHandler{`0}[])">
+            <summary>
+                Initializes a new instance of the <see cref="T:Projac.Connector.AnonymousConnectedProjectionBuilder`1"/> class.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="handlers"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.AnonymousConnectedProjectionBuilder`1.When``1(System.Func{`0,``0,System.Threading.Tasks.Task})">
+            <summary>
+                Specifies the message handler to be invoked when a particular message occurs.
+            </summary>
+            <typeparam name="TMessage">The type of the message.</typeparam>
+            <param name="handler">The message handler that handles the message asynchronously.</param>
+            <returns>A <see cref="T:Projac.Connector.AnonymousConnectedProjectionBuilder`1"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="handler"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.AnonymousConnectedProjectionBuilder`1.When``1(System.Action{`0,``0})">
+            <summary>
+                Specifies the message handler to be invoked when a particular message occurs.
+            </summary>
+            <typeparam name="TMessage">The type of the message.</typeparam>
+            <param name="handler">The message handler that handles the message synchronously.</param>
+            <returns>A <see cref="T:Projac.Connector.AnonymousConnectedProjectionBuilder`1"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="handler"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.AnonymousConnectedProjectionBuilder`1.When``1(System.Func{`0,``0,System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+            <summary>
+                Specifies the message handler to be invoked when a particular message occurs.
+            </summary>
+            <typeparam name="TMessage">The type of the message.</typeparam>
+            <param name="handler">The message handler that handles the message asynchronously and with cancellation support.</param>
+            <returns>A <see cref="T:Projac.Connector.AnonymousConnectedProjectionBuilder`1"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="handler"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.AnonymousConnectedProjectionBuilder`1.Build">
+            <summary>
+                Builds an <see cref="T:Projac.Connector.AnonymousConnectedProjection`1"/> using the handlers collected by this builder.
+            </summary>
+            <returns>A <see cref="T:Projac.Connector.AnonymousConnectedProjection`1"/> array.</returns>
+        </member>
+        <member name="T:Projac.Connector.ConnectedProjectionHandler`1">
+            <summary>
+                Represents a handler of a particular type of message.
+            </summary>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjectionHandler`1.#ctor(System.Type,System.Func{`0,System.Object,System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+            <summary>
+                Initializes a new instance of the <see cref="T:Projac.Connector.ConnectedProjectionHandler`1"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="handler">The handler.</param>
+            <exception cref="T:System.ArgumentNullException">
+                Throw when <paramref name="message"/> or <paramref name="handler"/> is
+                <c>null</c>.
+            </exception>
+        </member>
+        <member name="P:Projac.Connector.ConnectedProjectionHandler`1.Message">
+            <summary>
+                The type of message to handle.
+            </summary>
+        </member>
+        <member name="P:Projac.Connector.ConnectedProjectionHandler`1.Handler">
+            <summary>
+                The function that handles the message.
+            </summary>
+        </member>
+        <member name="T:Projac.Connector.ConnectedProjection`1">
+            <summary>
+                Represent a connected projection.
+            </summary>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjection`1.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:Projac.Connector.ConnectedProjection`1"/> class.
+            </summary>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjection`1.When``1(System.Func{`0,``0,System.Threading.Tasks.Task})">
+            <summary>
+                Specifies the asynchronous message handler to be invoked when a particular message occurs.
+            </summary>
+            <typeparam name="TMessage">The type of the message.</typeparam>
+            <param name="handler">The message handler.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="handler"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjection`1.When``1(System.Action{`0,``0})">
+            <summary>
+                Specifies the synchronous message handler to be invoked when a particular message occurs.
+            </summary>
+            <typeparam name="TMessage">The type of the message.</typeparam>
+            <param name="handler">The message handler.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="handler"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjection`1.When``1(System.Func{`0,``0,System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+            <summary>
+                Specifies the message handler to be invoked when a particular message occurs.
+            </summary>
+            <typeparam name="TMessage">The type of the message.</typeparam>
+            <param name="handler">The message handler.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="handler"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjection`1.op_Implicit(Projac.Connector.ConnectedProjection{`0})~Projac.Connector.ConnectedProjectionHandler{`0}[]">
+            <summary>
+            Performs an implicit conversion from <see cref="T:Projac.Connector.ConnectedProjection`1"/> to <see><cref>ConnectedProjectionHandler{TConnection}</cref></see>.
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjection`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a copy of the handlers.
+            </summary>
+            <returns>
+            An <see cref="T:Projac.Connector.ConnectedProjectionHandlerEnumerator`1"/> that can be used to iterate through a copy of the handlers.
+            </returns>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjection`1.System#Collections#Generic#IEnumerable{Projac#Connector#ConnectedProjectionHandler{TConnection}}#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            An <see cref="T:Projac.Connector.ConnectedProjectionHandlerEnumerator`1"/> that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:Projac.Connector.ConnectedProjection`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="P:Projac.Connector.ConnectedProjection`1.Handlers">
+            <summary>
+                Gets a read only collection of projection handlers.
+            </summary>
+            <value>
+                The projection handlers associated with this specification.
+            </value>
+        </member>
+        <member name="T:Projac.Connector.Resolve">
+            <summary>
+            Represents the available <see cref="T:Projac.Connector.ConnectedProjectionHandlerResolver`1">resolvers</see>.
+            </summary>
+        </member>
+        <member name="M:Projac.Connector.Resolve.WhenEqualToHandlerMessageType``1(Projac.Connector.ConnectedProjectionHandler{``0}[])">
+            <summary>
+            Resolves the <see cref="T:Projac.Connector.ConnectedProjectionHandler`1">handlers</see> that match the type of the message exactly.
+            </summary>
+            <param name="handlers">The set of resolvable handlers.</param>
+            <returns>A <see cref="T:Projac.Connector.ConnectedProjectionHandlerResolver`1">resolver</see>.</returns>
+        </member>
+        <member name="M:Projac.Connector.Resolve.WhenAssignableToHandlerMessageType``1(Projac.Connector.ConnectedProjectionHandler{``0}[])">
+            <summary>
+            Resolves the <see cref="T:Projac.Connector.ConnectedProjectionHandler`1">handlers</see> to which the message instance is assignable.
+            </summary>
+            <param name="handlers">The set of resolvable handlers.</param>
+            <returns>A <see cref="T:Projac.Connector.ConnectedProjectionHandlerResolver`1">resolver</see>.</returns>
+        </member>
+        <member name="T:Projac.Connector.ConnectedProjectionHandlerResolver`1">
+            <summary>
+            Resolves the <see cref="T:Projac.Connector.ConnectedProjectionHandler`1">handlers</see> that match the specified <paramref name="message"/>.
+            </summary>
+            <param name="message">The message to resolve <see cref="T:Projac.Connector.ConnectedProjectionHandler`1">handlers</see> for.</param>
+            <returns>The set of matching <see cref="T:Projac.Connector.ConnectedProjectionHandler`1">handlers</see>.</returns>
+        </member>
+        <member name="T:Projac.Connector.Testing.ConnectedProjectionTestSpecification`1">
+            <summary>
+            Represent a <see cref="T:Projac.Connector.ConnectedProjection`1"/> test specification.
+            </summary>
+            <typeparam name="TConnection">The type of the connection.</typeparam>
+        </member>
+        <member name="M:Projac.Connector.Testing.ConnectedProjectionTestSpecification`1.#ctor(Projac.Connector.ConnectedProjectionHandlerResolver{`0},System.Object[],System.Func{`0,System.Threading.CancellationToken,System.Threading.Tasks.Task{Projac.Connector.Testing.VerificationResult}})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Projac.Connector.Testing.ConnectedProjectionTestSpecification`1"/> class.
+            </summary>
+            <param name="resolver">The projection handler resolver.</param>
+            <param name="messages">The messages to project.</param>
+            <param name="verification">The verification method.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when
+            <paramref name="resolver"/>
+            or
+            <paramref name="messages"/>
+            or
+            <paramref name="verification"/> is null.
+            </exception>
+        </member>
+        <member name="P:Projac.Connector.Testing.ConnectedProjectionTestSpecification`1.Resolver">
+            <summary>
+            Gets the projection handler resolver.
+            </summary>
+            <value>
+            The projection handler resolver.
+            </value>
+        </member>
+        <member name="P:Projac.Connector.Testing.ConnectedProjectionTestSpecification`1.Messages">
+            <summary>
+            Gets the messages to project.
+            </summary>
+            <value>
+            The messages to project.
+            </value>
+        </member>
+        <member name="P:Projac.Connector.Testing.ConnectedProjectionTestSpecification`1.Verification">
+            <summary>
+            Gets the verification method.
+            </summary>
+            <value>
+            The verification method.
+            </value>
+        </member>
+        <member name="T:Projac.Connector.Testing.ConnectedProjectionScenario`1">
+            <summary>
+            Represent a scenario that tests a set of <see cref="T:Projac.Connector.ConnectedProjectionHandler`1"/>s.
+            </summary>
+            <typeparam name="TConnection">The type of the connection.</typeparam>
+        </member>
+        <member name="M:Projac.Connector.Testing.ConnectedProjectionScenario`1.#ctor(Projac.Connector.ConnectedProjectionHandlerResolver{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Projac.Connector.Testing.ConnectedProjectionScenario`1"/> class.
+            </summary>
+            <param name="resolver">The projection handler resolver.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="resolver"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.Testing.ConnectedProjectionScenario`1.Given(System.Object[])">
+            <summary>
+            Given the following specified messages to project.
+            </summary>
+            <param name="messages">The messages to project.</param>
+            <returns>A new <see cref="T:Projac.Connector.Testing.ConnectedProjectionScenario`1"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="messages"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.Testing.ConnectedProjectionScenario`1.Given(System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            Given the following specified messages to project.
+            </summary>
+            <param name="messages">The messages to project.</param>
+            <returns>A new <see cref="T:Projac.Connector.Testing.ConnectedProjectionScenario`1"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="messages"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.Testing.ConnectedProjectionScenario`1.Verify(System.Func{`0,System.Threading.Tasks.Task{Projac.Connector.Testing.VerificationResult}})">
+            <summary>
+            Builds a test specification using the specified verification method.
+            </summary>
+            <param name="verification">The verification method.</param>
+            <returns>A <see cref="T:Projac.Connector.Testing.ConnectedProjectionTestSpecification`1"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="verification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Projac.Connector.Testing.ConnectedProjectionScenario`1.Verify(System.Func{`0,System.Threading.CancellationToken,System.Threading.Tasks.Task{Projac.Connector.Testing.VerificationResult}})">
+            <summary>
+            Builds a test specification using the specified verification method that takes a cancellation token.
+            </summary>
+            <param name="verification">The verification method.</param>
+            <returns>A <see cref="T:Projac.Connector.Testing.ConnectedProjectionTestSpecification`1"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="verification"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:Projac.Connector.Testing.VerificationResult">
+            <summary>
+            The result of a test specification verification.
+            </summary>
+        </member>
+        <member name="M:Projac.Connector.Testing.VerificationResult.Pass(System.String)">
+            <summary>
+            Indicates that the test specification verification passed.
+            </summary>
+            <param name="message">An optional message stating why test specification verification passed.</param>
+            <returns>A passed <see cref="T:Projac.Connector.Testing.VerificationResult"/>.</returns>
+        </member>
+        <member name="M:Projac.Connector.Testing.VerificationResult.Fail(System.String)">
+            <summary>
+            Indicates that the test specification verification failed.
+            </summary>
+            <param name="message">An optional message stating why test specification verification failed.</param>
+            <returns>A failed <see cref="T:Projac.Connector.Testing.VerificationResult"/>.</returns>
+        </member>
+        <member name="M:Projac.Connector.Testing.VerificationResult.Equals(Projac.Connector.Testing.VerificationResult)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:Projac.Connector.Testing.VerificationResult.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/>, is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Projac.Connector.Testing.VerificationResult.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="M:Projac.Connector.Testing.VerificationResult.op_Equality(Projac.Connector.Testing.VerificationResult,Projac.Connector.Testing.VerificationResult)">
+            <summary>
+            Implements the operator ==.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:Projac.Connector.Testing.VerificationResult.op_Inequality(Projac.Connector.Testing.VerificationResult,Projac.Connector.Testing.VerificationResult)">
+            <summary>
+            Implements the operator !=.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="right">The right.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="P:Projac.Connector.Testing.VerificationResult.Passed">
+            <summary>
+            Returns <c>true</c> if the test specification verification passed.
+            </summary>
+        </member>
+        <member name="P:Projac.Connector.Testing.VerificationResult.Failed">
+            <summary>
+            Returns <c>false</c> if the test specification verification failed.
+            </summary>
+        </member>
+        <member name="P:Projac.Connector.Testing.VerificationResult.Message">
+            <summary>
+            Returns a message stating why the test specification verification passed or failed, or an empty if it wasn't specified.
+            </summary>
+        </member>
+        <member name="T:Projac.Connector.Testing.VerificationResultState">
+            <summary>
+            The resulting state of the test specification verification.
+            </summary>
+        </member>
+        <member name="F:Projac.Connector.Testing.VerificationResultState.Passed">
+            <summary>
+            The test specification verification passed.
+            </summary>
+        </member>
+        <member name="F:Projac.Connector.Testing.VerificationResultState.Failed">
+            <summary>
+            The test specification verification failed.
+            </summary>
+        </member>
+    </members>
+</doc>
