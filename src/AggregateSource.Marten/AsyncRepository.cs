@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Marten;
@@ -9,18 +8,10 @@ namespace AggregateSource.Marten
 	public class AsyncRepository<TAggregateRoot> : IAsyncRepository<TAggregateRoot>
 		where TAggregateRoot : class, IAggregateRootEntity, new()
 	{
-		private string _stream;
-		private int _expectedVersion = -1;
-		private readonly Dictionary<int, object> _changeCache = new Dictionary<int, object>();
-
 		public AsyncRepository(Func<TAggregateRoot> rootFactory, UnitOfTwerk unitOfWork)
 		{
-			if (rootFactory == null) throw new ArgumentNullException("rootFactory");
-			if (unitOfWork == null) throw new ArgumentNullException("unitOfWork");
-
-			RootFactory = rootFactory;
-			UnitOfWork = unitOfWork;
-			unitOfWork.PushToStream = PushToStream;
+			RootFactory = rootFactory ?? throw new ArgumentNullException(nameof(rootFactory));
+			UnitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
 		}
 
 		public Func<TAggregateRoot> RootFactory { get; }
@@ -60,31 +51,9 @@ namespace AggregateSource.Marten
 			UnitOfWork.Attach(new Aggregate(identifier, 0, root));
 		}
 
-		// http://jasperfx.github.io/marten/documentation/events/appending/
-		// events are inserted into the event stream if and only if the maximum event id 
 		public void AppendToStream(string stream, int expectedVersion, params object[] changes)
 		{
-			if (_stream == null) _stream = stream;
-			else if (_stream != stream) throw new InvalidOperationException();
-
-			if (_expectedVersion == -1) _expectedVersion = expectedVersion;
-			else if (_expectedVersion != expectedVersion) throw new InvalidOperationException();
-
-			foreach (var change in changes)
-			{
-				var hash = change.GetHashCode();
-				if (_changeCache.ContainsKey(hash)) continue;
-
-				_changeCache.Add(hash, change);
-			}
-
-		}
-
-		private void PushToStream()
-		{
-			UnitOfWork.Session.Events.Append(_stream, _expectedVersion + _changeCache.Count, _changeCache.Values.ToArray());
+			UnitOfWork.StoreChanges(stream, expectedVersion, changes);
 		}
 	}
 }
-
-

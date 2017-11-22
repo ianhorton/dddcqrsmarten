@@ -18,7 +18,7 @@ namespace DefiningExports.ProjectionRunner
 			});
 
 			using (var daemon = store.BuildProjectionDaemon(logger: new ConsoleDaemonLogger(),
-				settings: new DaemonSettings {LeadingEdgeBuffer = 1.Seconds()}))
+				settings: new DaemonSettings {LeadingEdgeBuffer = 1.Seconds(),}))
 			{
 				daemon.StartAll();
 				//daemon.RebuildAll();

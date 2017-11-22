@@ -66,7 +66,7 @@ namespace TestHarness
 					bus.PublishAsync(new AddExportRowToExportDefinition(id, gen.GenerateRandomLastName())).Wait();
 					bus.PublishAsync(new AddExportRowToExportDefinition(id, gen.GenerateRandomLastName())).Wait();
 
-					unitOfWork.SaveChanges();
+					unitOfWork.CommitChanges();
 				}
 
 
