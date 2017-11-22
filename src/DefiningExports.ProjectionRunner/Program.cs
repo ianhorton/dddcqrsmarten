@@ -3,12 +3,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Baseline.Dates;
+using Dapper;
 using Marten;
 using Marten.Events;
 using Marten.Events.Projections.Async;
 using DefiningExports.Events;
 using Marten.Events.Projections;
 using Marten.Storage;
+using Npgsql;
 
 namespace DefiningExports.ProjectionRunner
 {
@@ -51,24 +53,42 @@ namespace DefiningExports.ProjectionRunner
 			{
 			}
 
-			public Task ApplyAsync(IDocumentSession session, EventPage page, CancellationToken token)
+			public async Task ApplyAsync(IDocumentSession session, EventPage page, CancellationToken token)
 			{
-				var creationEvents = page.Events.OrderBy(s => s.Sequence).Select(s => s.Data).OfType<ExportDefinitionCreated>();
-				foreach (var e in creationEvents)
+				using (var c = new NpgsqlConnection(_connectionString))
 				{
-					// Apply(e);
-				}
+					await c.OpenAsync().ConfigureAwait(false);
+					using (var t = c.BeginTransaction())
+					{
+						try
+						{
+							var creationEvents = page.Events.OrderBy(s => s.Sequence).Select(s => s.Data).OfType<ExportDefinitionCreated>();
+							foreach (var e in creationEvents)
+							{
+								await t.Connection.ExecuteAsync(@"
+										INSERT into export_definition (id, title)
+										VALUES (@ExportDefinitionId, @Title);", e);
+							}
 
-				var rowAddedEvents = page.Events.OrderBy(s => s.Sequence).Select(s => s.Data).OfType<ExportRowAddedToExportDefinition>();
-				foreach (var e in rowAddedEvents)
-				{
-					// Apply(e);
-				}
+							var rowAddedEvents = page.Events.OrderBy(s => s.Sequence).Select(s => s.Data)
+								.OfType<ExportRowAddedToExportDefinition>();
+							foreach (var e in rowAddedEvents)
+							{
+								await t.Connection.ExecuteAsync(@"
+										INSERT into export_row (id, export_definition_id, name)
+										VALUES (@ExportRowId, @ExportDefinitionId, @Name);", e);
+							}
 
-				return Task.CompletedTask;
+							await t.CommitAsync().ConfigureAwait(false);
+
+						}
+						catch
+						{
+							await t.RollbackAsync().ConfigureAwait(false);
+						}
+					}
+				}
 			}
-
-
 
 			public int ProjectCount { get; set; }
 

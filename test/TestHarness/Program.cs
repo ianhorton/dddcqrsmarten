@@ -8,6 +8,7 @@ using DefiningExports.CommandHandlers;
 using DefiningExports.Commands;
 using Marten;
 using Marten.Events;
+using RandomNameGeneratorLibrary;
 
 namespace TestHarness
 {
@@ -26,6 +27,8 @@ namespace TestHarness
 				_.Events.StreamIdentity = StreamIdentity.AsString;
 			});
 
+
+			var gen = new PersonNameGenerator();
 
 			Console.WriteLine("CQRS Test Harness. Type exit to quit.");
 
@@ -59,9 +62,9 @@ namespace TestHarness
 					bus.Subscribe<CreateExportDefinition>(definingExportsMessageHandlersMartenHandler);
 					bus.Subscribe<AddExportRowToExportDefinition>(definingExportsMessageHandlersMartenHandler);
 
-					if (isCreate) bus.PublishAsync(new CreateExportDefinition(id, "newest ed")).Wait();
-					bus.PublishAsync(new AddExportRowToExportDefinition(id, "11 row")).Wait();
-					bus.PublishAsync(new AddExportRowToExportDefinition(id, "again row")).Wait();
+					if (isCreate) bus.PublishAsync(new CreateExportDefinition(id, gen.GenerateRandomLastName())).Wait();
+					bus.PublishAsync(new AddExportRowToExportDefinition(id, gen.GenerateRandomLastName())).Wait();
+					bus.PublishAsync(new AddExportRowToExportDefinition(id, gen.GenerateRandomLastName())).Wait();
 
 					unitOfWork.SaveChanges();
 				}
@@ -81,21 +84,6 @@ namespace TestHarness
 				}
 
 			}
-
-			//using (var session = store.OpenSession())
-			//{
-			//	// events are an array of little IEvent objects
-			//	// that contain both the actual event object captured
-			//	// previously and metadata like the Id and stream version
-			//	//var events = session.Events.FetchStream("99ca96f2-a277-43c2-8af5-308189ef69fa");
-			//	var events = session.Events.FetchStream(aggId);
-			//	events.Each(evt =>
-			//	{
-			//		Console.WriteLine($"{evt.Version}.) {evt.Data}");
-			//	});
-			//}
-
-			//Console.ReadLine();
 		}
 	}
 }
