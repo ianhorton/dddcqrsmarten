@@ -1,6 +1,0 @@
-F:\SoftwareProjects\AggregateSource\winbuild\output\net45\AggregateSource.SqlStreamStore.dll
-F:\SoftwareProjects\AggregateSource\winbuild\output\net45\AggregateSource.SqlStreamStore.pdb
-F:\SoftwareProjects\AggregateSource\winbuild\output\net45\AggregateSource.SqlStreamStore.XML
-F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\obj\Release\AggregateSource.SqlStreamStore.csprojResolveAssemblyReference.cache
-F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\obj\Release\AggregateSource.SqlStreamStore.dll
-F:\SoftwareProjects\AggregateSource\src\SqlStreamStore\AggregateSource.SqlStreamStore\obj\Release\AggregateSource.SqlStreamStore.pdb

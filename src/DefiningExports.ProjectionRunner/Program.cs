@@ -1,73 +1,96 @@
 ﻿using System;
-using System.Configuration;
-using System.Data.SqlClient;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Baseline.Dates;
-using DefiningExports.Projections;
 using Marten;
 using Marten.Events;
 using Marten.Events.Projections.Async;
-using Projac.Connector;
+using DefiningExports.Events;
+using Marten.Events.Projections;
+using Marten.Storage;
 
 namespace DefiningExports.ProjectionRunner
 {
-    public class Program
-    {
-
-	    static void Main()
-	    {
+	public class Program
+	{
+		static void Main()
+		{
 			var store = DocumentStore.For(_ =>
 			{
 				_.Connection("host=localhost; database=event_store; password=postgres; username=postgres");
+				_.Events.StreamIdentity = StreamIdentity.AsString;
+				_.Events.AsyncProjections.Add(new ExportDefinitionProjection("host=localhost; database=read_model; password=postgres; username=postgres"));
+
 			});
 
-		    using (var daemon = store.BuildProjectionDaemon(logger:new ConsoleDaemonLogger(), settings: new DaemonSettings {LeadingEdgeBuffer = 1.Seconds()}))
-		    {
-				// Start all of the configured async projections
-				//daemon.StartAll();
-				//daemon.TrackFor<ExportDefinition>();
-				//daemon.WaitForNonStaleResults().Wait();
+			using (var daemon = store.BuildProjectionDaemon(logger: new ConsoleDaemonLogger(),
+				settings: new DaemonSettings {LeadingEdgeBuffer = 1.Seconds()}))
+			{
+				daemon.StartAll();
+				Console.ReadLine();
+			}
+		}
 
-				//var daemon = store.BuildProjectionDaemon(logger: new ConsoleDaemonLogger());
-			    daemon.StartAll();
-			   // input.WriteLine(ConsoleColor.Green, "Daemon started. Press enter to stop.");
-			    Console.ReadLine();
+		public class ExportDefinitionProjection : IProjection
+		{
+			private readonly string _connectionString;
 
+			public Guid Id { get; set; }
 
+			public Type[] Consumes { get; } = {typeof(ExportDefinitionCreated), typeof(ExportRowAddedToExportDefinition)};
+
+			public AsyncOptions AsyncOptions { get; } = new AsyncOptions();
+
+			public ExportDefinitionProjection(string connectionString)
+			{
+				_connectionString = connectionString;
 			}
 
-		    // Compare the actual data in the ActiveProject documents with 
-		    // the expectation
-		    //_fixture.CompareActiveProjects(theStore);
+			public void Apply(IDocumentSession session, EventPage page)
+			{
+			}
 
-		    Console.ReadLine();
-	    }
+			public Task ApplyAsync(IDocumentSession session, EventPage page, CancellationToken token)
+			{
+				var creationEvents = page.Events.OrderBy(s => s.Sequence).Select(s => s.Data).OfType<ExportDefinitionCreated>();
+				foreach (var e in creationEvents)
+				{
+					// Apply(e);
+				}
 
-	
+				var rowAddedEvents = page.Events.OrderBy(s => s.Sequence).Select(s => s.Data).OfType<ExportRowAddedToExportDefinition>();
+				foreach (var e in rowAddedEvents)
+				{
+					// Apply(e);
+				}
 
-	    static void __Main()
-	    {
-			var projectionsConnectionString = ConfigurationManager.ConnectionStrings["Projections"].ConnectionString;
-		    var eventStoreConnectionString = "host=localhost; database=event_store; password=postgres; username=postgres";
+				return Task.CompletedTask;
+			}
 
-		    //   using (var streamStore = new MsSqlStreamStore(new MsSqlStreamStoreSettings(eventStoreConnectionString)))
-		    //   using (var connection = new SqlConnection(projectionsConnectionString))
-		    //   {
-		    //	var projector = new ConnectedProjector<SqlConnection>(
-		    //	    Resolve.WhenEqualToHandlerMessageType<SqlConnection>(new ExportDefinitionProjections()));
 
-		    //    //SetupProjectionsDb(projector, connection).Wait();
 
-		    //    //var deserializer = new DefaultEventDeserializer();
-		    //    //using (streamStore.SubscribeToAll(null, async (_, rawMessage) =>
-		    //    //{
-		    //	   // var @event = await deserializer.DeserializeAsync(rawMessage);
-		    //	   // await projector.ProjectAsync(connection, @event);
-		    //    //}))
-		    //    //{
-		    //	   // Console.WriteLine("Enter to exit...");
-		    //	   // Console.ReadLine();
-		    //    //}
-		    //}
-	    }
-    }
+			public int ProjectCount { get; set; }
+
+			public void Apply(ExportDefinitionCreated @event)
+			{
+				//var model = new ProjectCountProjection();
+				//model.ProjectCount++;
+				//_session.Store(model);
+			}
+
+			public void Apply(ExportRowAddedToExportDefinition @event)
+			{
+				//var model = new ProjectCountProjection();
+				//model.ProjectCount++;
+				//_session.Store(model);
+			}
+
+			public void EnsureStorageExists(ITenant tenant)
+			{
+
+			}
+		}
+
+	}
 }

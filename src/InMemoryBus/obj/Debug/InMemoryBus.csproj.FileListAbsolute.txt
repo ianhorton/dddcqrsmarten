@@ -1,6 +1,0 @@
-F:\SoftwareProjects\DddCqrsEs\src\InMemoryBus\bin\Debug\InMemoryBus.dll
-F:\SoftwareProjects\DddCqrsEs\src\InMemoryBus\bin\Debug\InMemoryBus.pdb
-F:\SoftwareProjects\DddCqrsEs\src\InMemoryBus\obj\Debug\InMemoryBus.csproj.CoreCompileInputs.cache
-F:\SoftwareProjects\DddCqrsEs\src\InMemoryBus\obj\Debug\InMemoryBus.dll
-F:\SoftwareProjects\DddCqrsEs\src\InMemoryBus\obj\Debug\InMemoryBus.pdb
-F:\SoftwareProjects\DddCqrsEs\src\InMemoryBus\obj\Debug\InMemoryBus.csprojResolveAssemblyReference.cache

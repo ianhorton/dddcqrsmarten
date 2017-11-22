@@ -7,7 +7,6 @@ namespace DefiningExports
 {
 	public class ExportDefinition : AggregateRootEntity
 	{
-		public string Id { get; }
 		public ExportDefinitionId ExportDefinitionId { get; private set; }
 		public string Title { get; private set; }
 
@@ -43,7 +42,7 @@ namespace DefiningExports
 		public void AddRowToRowsCollection(Guid exportRowId, string name)
 		{
 			// delgate invariant checks to the object that is interested in this stuff
-			ApplyChange(ExportRow.CreateNewRow(exportRowId, name));
+			ApplyChange(ExportRow.CreateNewRow(ExportDefinitionId.Id, exportRowId, name));
 		}
 	}
 }

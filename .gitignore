@@ -251,3 +251,23 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+src/AggregateSource\.Marten/bin/
+
+src/AggregateSource\.Marten/obj/
+
+src/Common/bin/
+
+src/Common/obj/
+
+src/DefiningExports\.ProjectionRunner/bin/
+
+src/DefiningExports\.ProjectionRunner/obj/
+
+src/ExportDefinitionContext/DefiningExports/bin/
+
+src/ExportDefinitionContext/DefiningExports/obj/
+
+src/InMemoryBus/bin/
+
+src/InMemoryBus/obj/

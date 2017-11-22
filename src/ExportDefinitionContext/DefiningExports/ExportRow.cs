@@ -20,12 +20,13 @@ namespace DefiningExports
 			});
 		}
 
-		public static ExportRowAddedToExportDefinition CreateNewRow(Guid exportRowId, string name)
+		public static ExportRowAddedToExportDefinition CreateNewRow(Guid exportDefinitionId, Guid exportRowId, string name)
 		{
+			if(exportDefinitionId == Guid.Empty) throw new ArgumentNullException(nameof(exportDefinitionId));
 			if (exportRowId == Guid.Empty) throw new ArgumentNullException(nameof(exportRowId));
 			if (string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
 
-			return new ExportRowAddedToExportDefinition(exportRowId, name);
+			return new ExportRowAddedToExportDefinition(exportDefinitionId, exportRowId, name);
 		}
 
 	}
