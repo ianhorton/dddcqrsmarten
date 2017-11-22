@@ -1,0 +1,15 @@
+version: '2'
+services:
+  PostgreSQL:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      - DB_USER=postgres
+      - DB_PASS=postgres
+    volumes:
+      - F:\Data\Postgresql-9.6:/var/lib/postgresql
+  # Redis:
+  #   image: "redis:alpine"
+  #   ports:
+  #     - "6379:6379"
