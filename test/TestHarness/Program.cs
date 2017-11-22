@@ -73,10 +73,6 @@ namespace TestHarness
 				{
 					Console.WriteLine($"{evt.Version}.) {evt.Data}");
 				});
-
-
-				var party_at_version_3 = session.Events
-					.AggregateStream<ExportDefinition>(aggId, 3);
 			}
 
 			Console.ReadLine();

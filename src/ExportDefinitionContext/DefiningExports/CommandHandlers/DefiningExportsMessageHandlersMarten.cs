@@ -25,11 +25,9 @@ namespace DefiningExports.CommandHandlers
 		{
 			var exportDefinition = ExportDefinition.CreateNew(command.ExportDefinitionId, command.Name);
 			_repository.Add($@"ed-{exportDefinition.ExportDefinitionId}", exportDefinition);
-			//_repository.Add(exportDefinition.ExportDefinitionId.ToString(), exportDefinition);
 
 			foreach (var aggregate in _repository.UnitOfWork.GetChanges())
 			{
-				//var aggregateIdentifier = $@"ed-{aggregate.Identifier}";
 				var aggregateIdentifier = aggregate.Identifier;
 				var aggregateExpectedVersion = aggregate.ExpectedVersion;
 				var changes = aggregate.Root.GetChanges().ToArray();
