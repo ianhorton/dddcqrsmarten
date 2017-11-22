@@ -57,12 +57,13 @@ namespace DefiningExports.ProjectionRunner
 			{
 				using (var c = new NpgsqlConnection(_connectionString))
 				{
-					await c.OpenAsync().ConfigureAwait(false);
+					await c.OpenAsync(token).ConfigureAwait(false);
 					using (var t = c.BeginTransaction())
 					{
 						try
 						{
-							var creationEvents = page.Events.OrderBy(s => s.Sequence).Select(s => s.Data).OfType<ExportDefinitionCreated>();
+							var creationEvents = page.Events.OrderBy(s => s.Sequence).Select(s => s.Data)
+								.OfType<ExportDefinitionCreated>();
 							foreach (var e in creationEvents)
 							{
 								await t.Connection.ExecuteAsync(@"
@@ -79,31 +80,15 @@ namespace DefiningExports.ProjectionRunner
 										VALUES (@ExportRowId, @ExportDefinitionId, @Name);", e);
 							}
 
-							await t.CommitAsync().ConfigureAwait(false);
+							await t.CommitAsync(token).ConfigureAwait(false);
 
 						}
 						catch
 						{
-							await t.RollbackAsync().ConfigureAwait(false);
+							await t.RollbackAsync(token).ConfigureAwait(false);
 						}
 					}
 				}
-			}
-
-			public int ProjectCount { get; set; }
-
-			public void Apply(ExportDefinitionCreated @event)
-			{
-				//var model = new ProjectCountProjection();
-				//model.ProjectCount++;
-				//_session.Store(model);
-			}
-
-			public void Apply(ExportRowAddedToExportDefinition @event)
-			{
-				//var model = new ProjectCountProjection();
-				//model.ProjectCount++;
-				//_session.Store(model);
 			}
 
 			public void EnsureStorageExists(ITenant tenant)
